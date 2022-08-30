@@ -7,7 +7,7 @@ import { IBook } from '../book.interface';
   styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent implements OnInit {
-  @Input() content: IBook = { title: '', author: '', abstract: '' };
+  @Input() content: IBook | undefined; // = { title: '', author: '', abstract: '' };
   @Output() details = new EventEmitter<IBook>();
   customStyles = {
     backgroundColor: 'blue',

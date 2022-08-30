@@ -1,10 +1,11 @@
 <!-- book-card.component.html -->
+<div *ngIf="content">
+  <h3>{{ content.title }}</h3>
+  <h4>{{ content.author }}</h4>
 
-<h3>{{ content.title }}</h3>
-<h4>{{ content.author }}</h4>
+  <button (click)="ping($event)">Details...</button><br />
 
-<button (click)="ping($event)">Details...</button><br />
-
-<p [style]="customStyles">
-  {{ content.abstract }}
-</p>
+  <p [style]="customStyles">
+    {{ content.abstract }}
+  </p>
+</div>
