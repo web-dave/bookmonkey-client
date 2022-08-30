@@ -7,7 +7,7 @@ import { IBook } from './book.interface';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
-  searchTerm = 'fri';
+  searchTerm = '';
   books: IBook[] = [
     {
       title: 'How to win friends',

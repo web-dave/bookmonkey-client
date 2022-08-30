@@ -10,7 +10,7 @@ export class BookCardComponent implements OnInit {
   @Input() content: IBook | undefined; // = { title: '', author: '', abstract: '' };
   @Output() details = new EventEmitter<IBook>();
   customStyles = {
-    backgroundColor: '#e6d72a',
+    backgroundColor: '#d0e1f9',
   };
   constructor() {
     // setTimeout(() => {
