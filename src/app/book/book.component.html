@@ -1,0 +1,17 @@
+<div class="list">
+  <!-- <input class="input" (input)="setSearchTerm($event)" /> -->
+  <!-- [search]="searchTerm" -->
+  <!-- (searchTerm)="searchTerm = $event" -->
+  <app-filter-books [(search)]="searchTerm"></app-filter-books>
+  <!-- kurzschreibweise von => -->
+  <!-- <app-filter-books [search]="searchTerm" (searchChange)="searchTerm = $event"></app-filter-books> -->
+  <app-book-card
+    [content]="book"
+    *ngFor="let book of books | filterBooks: searchTerm"
+    (details)="pong($event)"
+  ></app-book-card>
+</div>
+
+<!-- <template>
+    <h1>Moin</h1>
+  </template> -->
