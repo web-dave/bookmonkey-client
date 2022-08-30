@@ -53,6 +53,27 @@
               ],
               "outputHashing": "all"
             },
+            "stream": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stream.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -71,7 +92,11 @@
               "browserTarget": "bookmonkey-client-14:build:production"
             },
             "development": {
-              "browserTarget": "bookmonkey-client-14:build:development"
+              "browserTarget": "bookmonkey-client-14:build:development",
+              "proxyConfig": "proxy.conf.json"
+            },
+            "stream": {
+              "browserTarget": "bookmonkey-client-14:build:stream"
             }
           },
           "defaultConfiguration": "development"
