@@ -3,7 +3,7 @@
 <h3>{{ content.title }}</h3>
 <h4>{{ content.author }}</h4>
 
-<button>Details...</button><br />
+<button (click)="ping($event)">Details...</button><br />
 
 <p [style]="customStyles">
   {{ content.abstract }}

@@ -13,4 +13,8 @@ export class AppComponent {
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+
+  pong(e: IBook) {
+    console.log(e, '7', 1, true);
+  }
 }
