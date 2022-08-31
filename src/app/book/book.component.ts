@@ -18,12 +18,10 @@ export class BookComponent implements OnInit {
     //   complete: () => console.log('DONE'),
     //   error: (err) => console.error(err),
     // });
-    setTimeout(() => {
-      service.getAll().subscribe((data) => {
-        console.log(data);
-        this.books = [...this.books, ...data];
-      });
-    }, 2000);
+    service.getAll().subscribe((data) => {
+      console.log(data);
+      this.books = [...this.books, ...data];
+    });
   }
 
   ngOnInit(): void {}
