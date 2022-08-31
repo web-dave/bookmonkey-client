@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IBook } from './book.interface';
@@ -23,9 +24,10 @@ export class BookService {
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
   ];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<IBook[]> {
-    return of(this.books);
+    // return of(this.books, this.books, this.books);
+    return this.http.get<IBook[]>('http://localhost:4730/books');
   }
 }

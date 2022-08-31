@@ -10,6 +10,7 @@ import { BookService } from './book.service';
 export class BookComponent implements OnInit {
   searchTerm = '';
   books: IBook[] = [];
+  show = true;
 
   constructor(private service: BookService) {
     // service.getAll().subscribe({
@@ -17,9 +18,12 @@ export class BookComponent implements OnInit {
     //   complete: () => console.log('DONE'),
     //   error: (err) => console.error(err),
     // });
-    service.getAll().subscribe((data) => {
-      this.books = [...this.books, ...data];
-    });
+    setTimeout(() => {
+      service.getAll().subscribe((data) => {
+        console.log(data);
+        this.books = [...this.books, ...data];
+      });
+    }, 2000);
   }
 
   ngOnInit(): void {}
