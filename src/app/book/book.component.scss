@@ -1,4 +1,7 @@
 .list {
   display: grid;
   place-content: center;
+  div {
+    width: 600px;
+  }
 }
