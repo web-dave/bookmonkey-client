@@ -1,4 +1,7 @@
 .list {
   display: grid;
   place-content: center;
+  router-outlet {
+    margin-top: 50px;
+  }
 }
