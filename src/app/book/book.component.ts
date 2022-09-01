@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, NEVER, Observable, tap } from 'rxjs';
 import { IBook } from './book.interface';
 import { BookService } from './book.service';
@@ -13,7 +14,11 @@ export class BookComponent implements OnInit {
   books$: Observable<IBook[]> = NEVER;
   // c: number = 0;
 
-  constructor(private service: BookService) {
+  constructor(
+    private service: BookService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.books$ = service
       .getAll()
       .pipe(tap({ error: (err) => console.error(err) }));
@@ -21,7 +26,11 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  pong(e: IBook) {
-    console.log(e, '7', 1, true);
+  setSearchTerm(e: Event) {
+    this.searchTerm = (e.target as HTMLInputElement).value;
+  }
+
+  navigate(e: IBook) {
+    this.router.navigate([e.isbn], { relativeTo: this.route });
   }
 }

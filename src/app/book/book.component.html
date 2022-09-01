@@ -10,7 +10,7 @@
     <app-book-card
       [content]="book"
       *ngFor="let book of books | filterBooks: searchTerm; let c = count"
-      (details)="pong($event)"
+      (details)="navigate($event)"
     ></app-book-card>
   </ng-container>
 </div>
