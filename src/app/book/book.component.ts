@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { NEVER, Observable } from 'rxjs';
 import { IBook } from './book.interface';
 import { BookService } from './book.service';
 
@@ -9,7 +10,7 @@ import { BookService } from './book.service';
 })
 export class BookComponent implements OnInit {
   searchTerm = '';
-  books: IBook[] = [];
+  books$: Observable<IBook[]> = NEVER;
   show = true;
 
   constructor(private service: BookService) {
@@ -18,10 +19,11 @@ export class BookComponent implements OnInit {
     //   complete: () => console.log('DONE'),
     //   error: (err) => console.error(err),
     // });
-    service.getAll().subscribe((data) => {
-      console.log(data);
-      this.books = [...this.books, ...data];
-    });
+    this.books$ = service.getAll();
+    // service.getAll().subscribe((data) => {
+    //   console.log(data);
+    //   this.books = [...this.books, ...data];
+    // });
   }
 
   ngOnInit(): void {}
