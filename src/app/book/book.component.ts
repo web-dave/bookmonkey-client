@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { NEVER, Observable } from 'rxjs';
+import { catchError, NEVER, Observable, tap } from 'rxjs';
 import { IBook } from './book.interface';
 import { BookService } from './book.service';
 
@@ -11,19 +11,11 @@ import { BookService } from './book.service';
 export class BookComponent implements OnInit {
   searchTerm = '';
   books$: Observable<IBook[]> = NEVER;
-  show = true;
 
   constructor(private service: BookService) {
-    // service.getAll().subscribe({
-    //   next: (data) => (this.books = data),
-    //   complete: () => console.log('DONE'),
-    //   error: (err) => console.error(err),
-    // });
-    this.books$ = service.getAll();
-    // service.getAll().subscribe((data) => {
-    //   console.log(data);
-    //   this.books = [...this.books, ...data];
-    // });
+    this.books$ = service
+      .getAll()
+      .pipe(tap({ error: (err) => console.error(err) }));
   }
 
   ngOnInit(): void {}
