@@ -5,12 +5,20 @@ import { IBook } from './book.interface';
   name: 'filterBooks',
 })
 export class FilterBooksPipe implements PipeTransform {
-  transform(books: IBook[] | null = [], searchString: string = ''): IBook[] {
+  transform(
+    books: IBook[] | null = [],
+    searchString: string = '',
+    c: { count: number } = { count: 0 }
+  ): IBook[] {
     if (!books) {
       books = [];
     }
-    return books.filter((book) =>
+    const result = books.filter((book) =>
       book.title.toLowerCase().includes(searchString.toLowerCase())
     );
+    setTimeout(() => {
+      c.count = result.length;
+    }, 1);
+    return result;
   }
 }

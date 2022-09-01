@@ -6,10 +6,10 @@
   <!-- kurzschreibweise von => -->
   <!-- <app-filter-books [search]="searchTerm" (searchChange)="searchTerm = $event"></app-filter-books> -->
   <ng-container *ngIf="books$ | async as books">
-    <!-- <span>{{ c }}</span> -->
+    <span>{{ c.count }} / {{ books.length }}</span>
     <app-book-card
       [content]="book"
-      *ngFor="let book of books | filterBooks: searchTerm; let c = count"
+      *ngFor="let book of books | filterBooks: searchTerm:c"
       (details)="navigate($event)"
     ></app-book-card>
   </ng-container>

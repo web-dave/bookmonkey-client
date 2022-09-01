@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, NEVER, Observable, tap } from 'rxjs';
+import { NEVER, Observable, tap } from 'rxjs';
 import { IBook } from './book.interface';
 import { BookService } from './book.service';
 
@@ -12,19 +12,19 @@ import { BookService } from './book.service';
 export class BookComponent implements OnInit {
   searchTerm = '';
   books$: Observable<IBook[]> = NEVER;
-  // c: number = 0;
+  c = { count: 0 };
 
   constructor(
     private service: BookService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.books$ = service
+  ) {}
+
+  ngOnInit(): void {
+    this.books$ = this.service
       .getAll()
       .pipe(tap({ error: (err) => console.error(err) }));
   }
-
-  ngOnInit(): void {}
 
   setSearchTerm(e: Event) {
     this.searchTerm = (e.target as HTMLInputElement).value;
