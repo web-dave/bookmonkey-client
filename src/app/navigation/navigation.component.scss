@@ -1,0 +1,33 @@
+@import "../../colors.scss";
+:host {
+  display: block;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  place-content: center;
+  position: fixed;
+  border: 3px solid $border;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $cardbg;
+    li {
+      float: left;
+    }
+    a {
+      display: block;
+      color: $highlight;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      &:hover:not(.active) {
+        background-color: $border;
+      }
+      &.active {
+        background-color: $accent;
+      }
+    }
+  }
+}

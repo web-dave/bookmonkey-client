@@ -11,6 +11,7 @@ import { BookService } from './book.service';
 export class BookComponent implements OnInit {
   searchTerm = '';
   books$: Observable<IBook[]> = NEVER;
+  // c: number = 0;
 
   constructor(private service: BookService) {
     this.books$ = service

@@ -1,19 +1,18 @@
-<div class="list">
-  <div>
-    <!-- <input class="input" (input)="setSearchTerm($event)" /> -->
-    <!-- [search]="searchTerm" -->
-    <!-- (searchTerm)="searchTerm = $event" -->
-    <app-filter-books [(search)]="searchTerm"></app-filter-books>
-    <!-- kurzschreibweise von => -->
-    <!-- <app-filter-books [search]="searchTerm" (searchChange)="searchTerm = $event"></app-filter-books> -->
-    <ng-container *ngIf="books$ | async as books">
-      <app-book-card
-        [content]="book"
-        *ngFor="let book of books | filterBooks: searchTerm"
-        (details)="pong($event)"
-      ></app-book-card>
-    </ng-container>
-  </div>
+<div>
+  <!-- <input class="input" (input)="setSearchTerm($event)" /> -->
+  <!-- [search]="searchTerm" -->
+  <!-- (searchTerm)="searchTerm = $event" -->
+  <app-filter-books [(search)]="searchTerm"></app-filter-books>
+  <!-- kurzschreibweise von => -->
+  <!-- <app-filter-books [search]="searchTerm" (searchChange)="searchTerm = $event"></app-filter-books> -->
+  <ng-container *ngIf="books$ | async as books">
+    <!-- <span>{{ c }}</span> -->
+    <app-book-card
+      [content]="book"
+      *ngFor="let book of books | filterBooks: searchTerm; let c = count"
+      (details)="pong($event)"
+    ></app-book-card>
+  </ng-container>
 </div>
 
 <!-- <template>
