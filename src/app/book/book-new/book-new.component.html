@@ -1,0 +1,13 @@
+<form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+  <label for="isbn">ISBN:</label>
+  <input type="text" id="isbn" formControlName="isbn" /><span
+    *ngIf="bookForm.controls['isbn'].invalid"
+    >⚡</span
+  ><br />
+  <label for="title">Title:</label>
+  <input type="text" formControlName="title" /><span
+    *ngIf="bookForm.controls['title'].invalid"
+    >⚡ {{ bookForm.controls["title"].getError("title") }}</span
+  ><br />
+  <button type="submit">📩</button>
+</form>

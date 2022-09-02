@@ -6,6 +6,8 @@ import { FilterBooksPipe } from './filter-books.pipe';
 import { FilterBooksComponent } from './filter-books/filter-books.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookRoutingModule } from './book-routing.module';
+import { BookNewComponent } from './book-new/book-new.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,9 @@ import { BookRoutingModule } from './book-routing.module';
     FilterBooksPipe,
     FilterBooksComponent,
     BookDetailsComponent,
+    BookNewComponent,
   ],
-  imports: [CommonModule, BookRoutingModule],
+  imports: [CommonModule, BookRoutingModule, ReactiveFormsModule],
   exports: [],
 })
 export class BookModule {}

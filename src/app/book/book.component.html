@@ -2,6 +2,8 @@
   <!-- <input class="input" (input)="setSearchTerm($event)" /> -->
   <!-- [search]="searchTerm" -->
   <!-- (searchTerm)="searchTerm = $event" -->
+  <h1>{{ errors$ | async }}</h1>
+  <a routerLink="new">NEW</a>
   <app-filter-books [(search)]="searchTerm"></app-filter-books>
   <!-- kurzschreibweise von => -->
   <!-- <app-filter-books [search]="searchTerm" (searchChange)="searchTerm = $event"></app-filter-books> -->

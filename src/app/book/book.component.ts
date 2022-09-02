@@ -10,6 +10,7 @@ import { BookService } from './book.service';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
+  errors$ = this.service.errors.pipe(tap(console.log));
   searchTerm = '';
   books$: Observable<IBook[]> = NEVER;
   c = { count: 0 };
