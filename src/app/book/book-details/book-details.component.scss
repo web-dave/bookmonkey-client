@@ -1,0 +1,16 @@
+@import "../../../colors.scss";
+:host {
+  display: block;
+  background-color: $cardbg;
+  box-shadow: 5px 5px 15px -2px $border;
+  border: 3px solid $border;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  width: 600px;
+}
+p {
+  border-radius: 15px;
+  padding: 15px;
+}
