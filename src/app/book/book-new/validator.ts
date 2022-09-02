@@ -10,11 +10,11 @@ import { BookService } from '../book.service';
 export const titleValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  if (control.value === 'Dave') {
+  if (control.value === 'webdave') {
     return null;
   } else {
     return {
-      title: 'Title ist nicht Dave :(',
+      title: 'Title ist nicht Dave gehe nach https://webdave.tv :(',
     };
   }
 };
