@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, TopNavComponent],
-  imports: [BrowserModule, AppRoutingModule, AboutModule, BooksModule],
+  imports: [BrowserModule, AboutModule, BooksModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
