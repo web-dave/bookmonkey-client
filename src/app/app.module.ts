@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { BooksModule } from './books/books.module';
 import { AboutModule } from './about/about.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, TopNavComponent],
-  imports: [BrowserModule, AboutModule, BooksModule],
+  imports: [BrowserModule, AppRoutingModule, AboutModule, BooksModule],
   providers: [],
   bootstrap: [AppComponent],
 })
