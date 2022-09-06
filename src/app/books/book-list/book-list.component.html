@@ -1,6 +1,12 @@
+<input
+  placeholder="🔎"
+  type="text"
+  [value]="searchText"
+  (input)="setSearchText($event)"
+/>
 <ul *ngIf="books">
   <app-book-preview
-    *ngFor="let book of books"
+    *ngFor="let book of books | search: searchText"
     [book]="book"
     (bookSelected)="goToBook($event)"
     [(foo)]="book.title"

@@ -10,7 +10,7 @@ import { BooksService } from '../books.service';
 })
 export class BookListComponent implements OnInit {
   books: IBook[] = [];
-  foo = 1;
+  searchText = '';
   constructor(
     private service: BooksService,
     private router: Router,
@@ -27,5 +27,9 @@ export class BookListComponent implements OnInit {
   goToBook(b: IBook) {
     console.table(b);
     this.router.navigate([b.isbn], { relativeTo: this.route });
+  }
+
+  setSearchText(e: Event) {
+    this.searchText = (e.target as HTMLInputElement).value;
   }
 }
