@@ -23,6 +23,9 @@ export class BookListComponent implements OnInit {
       error: (err) => console.error(err),
       complete: () => console.info('DONE'),
     });
+    // console.log(this.route.snapshot);
+
+    this.searchText = this.route.snapshot.queryParams['q'];
   }
   goToBook(b: IBook) {
     console.table(b);
