@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
-
-  constructor() { }
+  books: any[] = [];
+  constructor(private service: BooksService) {}
 
   ngOnInit(): void {
+    this.service.getBooks().subscribe({
+      next: (data) => (this.books = data),
+      error: (err) => console.error(err),
+      complete: () => console.info('DONE'),
+    });
   }
-
 }
