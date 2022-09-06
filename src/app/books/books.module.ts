@@ -7,9 +7,10 @@ import { BookPreviewComponent } from './book-preview/book-preview.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { PagesPipe } from './pages.pipe';
 import { SearchPipe } from './search.pipe';
+import { OrderBtnDirective } from './order-btn.directive';
 
 @NgModule({
-  declarations: [BooksComponent, BookListComponent, BookPreviewComponent, BookDetailsComponent, PagesPipe, SearchPipe],
+  declarations: [BooksComponent, BookListComponent, BookPreviewComponent, BookDetailsComponent, PagesPipe, SearchPipe, OrderBtnDirective],
   exports: [BooksComponent],
   imports: [CommonModule, BooksRoutingModule],
 })

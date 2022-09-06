@@ -4,7 +4,7 @@
 </header>
 <img [src]="book?.cover" [alt]="book?.title" />
 <p>{{ book?.abstract }}</p>
-<p>{{ book?.publisher }}</p>
+<p appOrderBtn [orderBtn]="'Los drück druffffff!'">{{ book?.publisher }}</p>
 <footer>{{ book?.author }}</footer>
 <!-- </div> -->
 
