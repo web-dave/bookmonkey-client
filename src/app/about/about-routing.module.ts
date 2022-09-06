@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about.component';
-const aboutRoutes: Routes = [];
+const aboutRoutes: Routes = [
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+];
 @NgModule({
-  imports: [RouterModule.forRoot(aboutRoutes)],
+  imports: [RouterModule.forRoot(aboutRoutes, { enableTracing: true })],
   exports: [RouterModule],
 })
 export class AboutRoutingModule {}
