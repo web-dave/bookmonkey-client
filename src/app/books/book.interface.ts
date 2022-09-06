@@ -10,3 +10,5 @@ export interface IBook {
   cover: string;
   status?: 'neu' | 'alt';
 }
+
+export type mayBook = IBook | undefined;

@@ -8,7 +8,7 @@ const aboutRoutes: Routes = [
   },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(aboutRoutes, { enableTracing: true })],
+  imports: [RouterModule.forChild(aboutRoutes)],
   exports: [RouterModule],
 })
 export class AboutRoutingModule {}
