@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IBook } from '../book.interface';
 import { BooksService } from '../books.service';
 
 @Component({
@@ -7,8 +8,11 @@ import { BooksService } from '../books.service';
   styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
-  books: any[] = [];
-  constructor(private service: BooksService) {}
+  books: IBook[] = [];
+  foo = 1;
+  constructor(private service: BooksService) {
+    this.books[0].isbn;
+  }
 
   ngOnInit(): void {
     this.service.getBooks().subscribe({
@@ -16,5 +20,8 @@ export class BookListComponent implements OnInit {
       error: (err) => console.error(err),
       complete: () => console.info('DONE'),
     });
+  }
+  goToBook(b: IBook) {
+    console.table(b);
   }
 }
