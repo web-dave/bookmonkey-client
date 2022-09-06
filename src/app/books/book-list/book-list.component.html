@@ -19,3 +19,11 @@
     [(foo)]="book.title"
   ></app-book-preview>
 </ul>
+<!-- <ul *ngIf="books">
+  <app-book-preview
+    *ngFor="let book of transform(books, searchText)"
+    [book]="book"
+    (bookSelected)="goToBook($event)"
+    [(foo)]="book.title"
+  ></app-book-preview>
+</ul> -->

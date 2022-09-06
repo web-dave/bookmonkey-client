@@ -23,9 +23,10 @@ export class BookListComponent implements OnInit {
       error: (err) => console.error(err),
       complete: () => console.info('DONE'),
     });
+    // setInterval(() => (this.searchText = 'bar'), 1500);
     // console.log(this.route.snapshot);
 
-    this.searchText = this.route.snapshot.queryParams['q'];
+    this.searchText = this.route.snapshot.queryParams['q'] || 'Hurz';
   }
   goToBook(b: IBook) {
     console.table(b);
@@ -35,4 +36,11 @@ export class BookListComponent implements OnInit {
   setSearchText(e: Event) {
     this.searchText = (e.target as HTMLInputElement).value;
   }
+  // transform(books: IBook[] = [], searchterm: string = ''): IBook[] {
+  //   console.log('Methode');
+
+  //   return books.filter((book) =>
+  //     book.title.toLowerCase().includes(searchterm.toLowerCase())
+  //   );
+  // }
 }
