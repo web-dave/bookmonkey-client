@@ -9,7 +9,8 @@ import { PagesPipe } from './pages.pipe';
 import { SearchPipe } from './search.pipe';
 import { OrderBtnDirective } from './order-btn.directive';
 import { BookEditComponent } from './book-edit/book-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BookNewComponent } from './book-new/book-new.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { FormsModule } from '@angular/forms';
     SearchPipe,
     OrderBtnDirective,
     BookEditComponent,
+    BookNewComponent,
   ],
   exports: [BooksComponent],
-  imports: [CommonModule, BooksRoutingModule, FormsModule],
+  imports: [CommonModule, BooksRoutingModule, FormsModule, ReactiveFormsModule],
 })
 export class BooksModule {}

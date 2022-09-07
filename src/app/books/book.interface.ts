@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 export interface IBook {
   title: string;
   subtitle: string;
@@ -9,6 +11,11 @@ export interface IBook {
   price: string;
   cover: string;
   status?: 'neu' | 'alt';
+  id: string;
 }
+
+export type IForm<T> = {
+  [K in keyof T]: FormControl<T[K]>;
+};
 
 export type mayBook = IBook | undefined;
