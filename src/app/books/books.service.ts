@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { IBook } from './book.interface';
 
 @Injectable({
@@ -11,7 +11,9 @@ export class BooksService {
   constructor(private http: HttpClient) {}
 
   getBooks(): Observable<IBook[]> {
-    return this.http.get<IBook[]>(this.url);
+    return this.http
+      .get<IBook[]>(this.url)
+      .pipe(retry({ count: 40, delay: 1500, resetOnSuccess: true }));
   }
 
   getBook(isbn: string): Observable<IBook> {

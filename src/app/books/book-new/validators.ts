@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { Observable, of, map, tap, timer, switchMap, pipe } from 'rxjs';
+import { Observable, of, map, tap, timer, switchMap } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BooksService } from '../books.service';
 
