@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { IBook, IForm } from '../book.interface';
 import { BooksService } from '../books.service';
+import { publisherValidator, publisherValidatorFn } from './validators';
 
 @Component({
   selector: 'app-book-new',
@@ -23,7 +24,7 @@ export class BookNewComponent implements OnInit {
       abstract: [''],
       numPages: [0],
       author: [''],
-      publisher: [''],
+      publisher: ['', [publisherValidatorFn(['Hurz'])]],
       price: [''],
       cover: [''],
     });
