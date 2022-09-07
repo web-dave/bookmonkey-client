@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { IBook, IForm } from '../book.interface';
 import { BooksService } from '../books.service';
-import { publisherValidator, publisherValidatorFn } from './validators';
+import {
+  publisherValidator,
+  publisherValidatorFn,
+  asyncIsbnValidator,
+} from './validators';
 
 @Component({
   selector: 'app-book-new',
@@ -17,7 +21,7 @@ export class BookNewComponent implements OnInit {
     private service: BooksService
   ) {
     this.bookForm = this.builder.group({
-      isbn: ['', [Validators.required]],
+      isbn: ['', [Validators.required], [asyncIsbnValidator(this.service)]],
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       subtitle: [''],
