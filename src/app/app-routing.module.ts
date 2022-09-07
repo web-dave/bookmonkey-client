@@ -10,6 +10,7 @@ import { PreloadDelayed } from './preload-delayed';
 const appRoutes: Routes = [
   {
     path: 'books',
+    data: { preload: true },
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
   },
