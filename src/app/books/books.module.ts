@@ -8,10 +8,21 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { PagesPipe } from './pages.pipe';
 import { SearchPipe } from './search.pipe';
 import { OrderBtnDirective } from './order-btn.directive';
+import { BookEditComponent } from './book-edit/book-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [BooksComponent, BookListComponent, BookPreviewComponent, BookDetailsComponent, PagesPipe, SearchPipe, OrderBtnDirective],
+  declarations: [
+    BooksComponent,
+    BookListComponent,
+    BookPreviewComponent,
+    BookDetailsComponent,
+    PagesPipe,
+    SearchPipe,
+    OrderBtnDirective,
+    BookEditComponent,
+  ],
   exports: [BooksComponent],
-  imports: [CommonModule, BooksRoutingModule],
+  imports: [CommonModule, BooksRoutingModule, FormsModule],
 })
 export class BooksModule {}
