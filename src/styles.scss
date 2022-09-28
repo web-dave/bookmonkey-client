@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: darkslategray;
+  background-color: rgb(28, 28, 48);
   color: lightcyan;
   app-book-list {
     display: grid;
@@ -16,7 +16,7 @@ body {
 
       app-book-preview {
         display: block;
-        background-color: rgb(50, 99, 99);
+        background-color: rgb(13, 17, 49);
         box-shadow: 5px 5px 15px -2px lightcyan;
         border: 3px solid lightcyan;
         border-radius: 15px;
