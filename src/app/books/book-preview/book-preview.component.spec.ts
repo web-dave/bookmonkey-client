@@ -7,6 +7,7 @@ import { BookPreviewComponent } from './book-preview.component';
 fdescribe('BookPreviewComponent', () => {
   let component: BookPreviewComponent;
   let fixture: ComponentFixture<BookPreviewComponent>;
+  let view: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,6 +17,7 @@ fdescribe('BookPreviewComponent', () => {
     fixture = TestBed.createComponent(BookPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    view = fixture.nativeElement;
   });
 
   it('should create', () => {
@@ -27,8 +29,9 @@ fdescribe('BookPreviewComponent', () => {
     component.book = mockBooks[0];
     fixture.detectChanges();
     component.bookSelected.subscribe((data) => (expectedBook = data));
-    component.selectThisBook();
-    console.log(expectedBook);
+    // component.selectThisBook();
+    view.querySelector('button')?.click();
+    // console.log(view);
 
     expect(expectedBook).toBe(mockBooks[0]);
   });
