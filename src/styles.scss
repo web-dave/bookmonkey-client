@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: darkslategray;
+  color: lightcyan;
+  app-book-list {
+    display: grid;
+    place-content: center;
+    router-outlet {
+      margin-top: 50px;
+    }
+    ul {
+      width: 600px;
+      input {
+        width: 600px;
+      }
+
+      app-book-preview {
+        display: block;
+        background-color: rgb(50, 99, 99);
+        box-shadow: 5px 5px 15px -2px lightcyan;
+        border: 3px solid lightcyan;
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        width: 100%;
+        p {
+          border-radius: 15px;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}
