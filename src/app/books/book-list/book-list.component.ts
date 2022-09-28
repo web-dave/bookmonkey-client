@@ -26,7 +26,7 @@ export class BookListComponent implements OnInit {
     // setInterval(() => (this.searchText = 'bar'), 1500);
     // console.log(this.route.snapshot);
 
-    this.searchText = this.route.snapshot.queryParams['q'] || 'Hurz';
+    this.searchText = this.route.snapshot.queryParams['q'] || '';
   }
   goToBook(b: IBook) {
     console.table(b);
