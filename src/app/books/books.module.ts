@@ -24,6 +24,7 @@ import { BookNewComponent } from './book-new/book-new.component';
     BookEditComponent,
     BookNewComponent,
   ],
+  providers: [],
   exports: [BooksComponent],
   imports: [CommonModule, BooksRoutingModule, FormsModule, ReactiveFormsModule],
 })
