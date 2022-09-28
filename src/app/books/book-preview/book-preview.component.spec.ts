@@ -4,7 +4,7 @@ import { IBook } from '../book.interface';
 
 import { BookPreviewComponent } from './book-preview.component';
 
-fdescribe('BookPreviewComponent', () => {
+describe('BookPreviewComponent', () => {
   let component: BookPreviewComponent;
   let fixture: ComponentFixture<BookPreviewComponent>;
   let view: HTMLElement;
