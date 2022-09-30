@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IBook } from '../book.interface';
 import { BooksService } from '../books.service';
@@ -7,6 +12,7 @@ import { BooksService } from '../books.service';
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class BookListComponent implements OnInit {
   books: IBook[] = [];
@@ -14,12 +20,16 @@ export class BookListComponent implements OnInit {
   constructor(
     private service: BooksService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.service.getBooks().subscribe({
-      next: (data) => (this.books = data),
+      next: (data) => {
+        this.books = data;
+        this.cdr.markForCheck();
+      },
       error: (err) => console.error(err),
       complete: () => console.info('DONE'),
     });
