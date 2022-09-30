@@ -1,5 +1,5 @@
 <form [formGroup]="bookForm" (ngSubmit)="saveBook()">
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="title"
       >Title
       <span *ngIf="bookForm.controls.title.hasValidator(Validators.required)"
@@ -15,7 +15,23 @@
     <div [hidden]="!bookForm.controls.title.hasError('required')">
       Enter a title
     </div>
-  </div>
+  </div> -->
+  <app-form-control-wrapper name="title">
+    <label #label for="title"
+      >Title
+      <span *ngIf="bookForm.controls.title.hasValidator(Validators.required)"
+        >*</span
+      ></label
+    >
+    <input
+      #input
+      type="text"
+      [required]="bookForm.controls.title.hasValidator(Validators.required)"
+      id="title"
+      formControlName="title"
+    />
+    <span class="valid" *ngIf="bookForm.controls.title.invalid">⚡</span>
+  </app-form-control-wrapper>
   <div class="form-group">
     <label for="isbn">ISBN</label>
     <input type="text" id="isbn" formControlName="isbn" />
@@ -37,3 +53,4 @@
 
   <button type="submit" [disabled]="!bookForm.valid">Save</button>
 </form>
+<pre>{{ bookForm.value | json }}</pre>

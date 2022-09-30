@@ -12,6 +12,14 @@
     [value]="searchText"
     (input)="searchText = searchInput.value"
   />
+  <!-- <ng-template
+    ngFor
+    let-book
+    let-i="index"
+    [ngForOf]="books | search: searchText"
+  >
+    <h5>{{ i }} {{ book.title }}</h5>
+  </ng-template> -->
   <app-book-preview
     *ngFor="let book of books | search: searchText"
     [book]="book"

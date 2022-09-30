@@ -5,3 +5,12 @@
     {{ book.isbn }} <button (click)="selectThisBook()">show me more</button>
   </li>
 </ul>
+
+<ng-template [ngIf]="book">
+  <li>
+    {{ book.title }}
+  </li>
+  <li>
+    {{ book.isbn }} <button (click)="selectThisBook()">show me more</button>
+  </li>
+</ng-template>

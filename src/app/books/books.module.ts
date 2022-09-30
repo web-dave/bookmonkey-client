@@ -11,6 +11,7 @@ import { OrderBtnDirective } from './order-btn.directive';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookNewComponent } from './book-new/book-new.component';
+import { FormControlWrapperComponent } from './form-control-wrapper/form-control-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BookNewComponent } from './book-new/book-new.component';
     OrderBtnDirective,
     BookEditComponent,
     BookNewComponent,
+    FormControlWrapperComponent,
   ],
   providers: [],
   exports: [BooksComponent],
