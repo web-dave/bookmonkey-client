@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'bookmonkey-client-14';
+  title = 'bookmonkey-client-14 🦄';
   constructor() {}
   // #w = 7;
   // foo() {
