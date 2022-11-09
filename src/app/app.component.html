@@ -1,6 +1,8 @@
 <!-- <input #input (input)="updateSerachTerm(input.value)" /><br /> -->
 <input #input (input)="searchTerm = input.value" />
 <hr />
+<pre>{{ books | json }}</pre>
+<hr />
 <!-- {{ searchTerm }} -->
 <app-book-card
   [content]="book"
