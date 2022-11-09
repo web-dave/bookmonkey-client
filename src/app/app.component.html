@@ -1,4 +1,25 @@
+<template>
+  <h1>HI</h1>
+</template>
+
+<!-- <p *ngIf="book.foo">BAR:{{ book.foo.bar }}</p> -->
+<h3 *ngIf="getStatus() !== 'done'; else fertig">Noch nicht Fertig</h3>
+<ng-template #fertig><h3>Alles ist Fertig</h3></ng-template>
+
+<div *ngSwitch="getStatus()">
+  <h3 *ngSwitchCase="'done'">Noch nicht Fertig (sw)</h3>
+  <h3 *ngSwitchDefault>Default (sw)</h3>
+</div>
+
 <app-book-card
   [content]="book"
   (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of books"
 ></app-book-card>
+
+<!-- <ng-template ngFor let-book [ngForOf]="books">
+  <app-book-card
+    [content]="book"
+    (detailClick)="goToBookDetails($event)"
+  ></app-book-card>
+</ng-template> -->
