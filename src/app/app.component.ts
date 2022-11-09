@@ -7,6 +7,7 @@ import { IBook } from './models/book';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  searchTerm = '';
   title = 'bookmonkey-client-14 🦄';
   books: IBook[] = [
     {
@@ -38,6 +39,11 @@ export class AppComponent {
     //   this.book.foo = { bar: 'BAZ' };
     // }, 2000);
   }
+
+  updateSerachTerm(search: string) {
+    this.searchTerm = search;
+  }
+
   getStatus() {
     // console.info('Get Status');
     return this.status;
