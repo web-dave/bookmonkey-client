@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IBook } from '../models/book';
 
 @Component({
@@ -8,15 +8,19 @@ import { IBook } from '../models/book';
 })
 export class BookCardComponent implements OnInit {
   @Input() content: IBook = { title: '', author: '', abstract: '' };
+  @Output() detailClick = new EventEmitter<IBook>();
   myStyle = {
     color: 'hotpink',
   };
+
   constructor() {}
 
   ngOnInit(): void {}
 
   handleDetailClick(click: MouseEvent) {
-    console.log(click);
+    this.detailClick.emit(this.content);
+    // console.log(click);
+    // this.content.title = '';
     // click.target as HTMLAnchorElement;
   }
 }

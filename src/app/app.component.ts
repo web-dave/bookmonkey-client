@@ -14,4 +14,8 @@ export class AppComponent {
     author: 'Max und Maja',
     abstract: 'äldf kasdöjc nkabö rfö dkv jn fad ögrfu',
   };
+
+  goToBookDetails(data: IBook) {
+    console.log(data);
+  }
 }
