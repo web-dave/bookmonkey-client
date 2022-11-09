@@ -14,4 +14,9 @@ export class BookCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  handleDetailClick(click: MouseEvent) {
+    console.log(click);
+    // click.target as HTMLAnchorElement;
+  }
 }
