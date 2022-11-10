@@ -15,7 +15,9 @@ export class BookCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => console.log('Hallo'), 2000);
+  }
 
   handleDetailClick(click: MouseEvent) {
     this.detailClick.emit(this.content);

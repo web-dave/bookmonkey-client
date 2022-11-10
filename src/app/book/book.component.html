@@ -4,8 +4,11 @@
 <!-- <pre>{{ books | json }}</pre> -->
 <hr />
 <!-- {{ searchTerm }} -->
-<app-book-card
-  [content]="book"
-  (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books | bookFilter: searchTerm"
-></app-book-card>
+<button (click)="show = !show">🤪</button>
+<div *ngIf="show">
+  <app-book-card
+    [content]="book"
+    (detailClick)="goToBookDetails($event)"
+    *ngFor="let book of books | bookFilter: searchTerm"
+  ></app-book-card>
+</div>

@@ -10,6 +10,7 @@ import { BookService } from './book.service';
 export class BookComponent implements OnInit {
   searchTerm = '';
   books: IBook[] = [];
+  show = true;
 
   constructor(private service: BookService) {
     this.service.getAll().subscribe({
