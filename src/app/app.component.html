@@ -1,1 +1,5 @@
-<app-book></app-book>
+<button (click)="show = !show">🤪</button>
+<div *ngIf="show">
+  <app-book></app-book>
+</div>
+{{ show }}

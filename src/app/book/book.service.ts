@@ -33,6 +33,6 @@ export class BookService {
 
   getAll(): Observable<IBook[]> {
     return this.http.get<IBook[]>('http://localhost:4730/books');
-    // return of(this.books);
+    // return of([]).pipe();
   }
 }

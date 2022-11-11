@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IBook } from '../models/book';
 import { BookService } from './book.service';
 
@@ -7,18 +8,28 @@ import { BookService } from './book.service';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
 })
-export class BookComponent implements OnInit {
+export class BookComponent implements OnInit, OnDestroy {
   searchTerm = '';
   books: IBook[] = [];
   show = true;
+  sub = new Subscription();
 
-  constructor(private service: BookService) {
-    this.service.getAll().subscribe({
-      next: (b) => (this.books = b),
-    });
-    // this.service.getAll().subscribe((b) => (this.books = b));
+  constructor(private service: BookService) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.sub.add(this.service.getAll().subscribe((b) => []));
+    // this.sub.add(this.service.getAll().subscribe((b) => []));
+    // this.sub.add(this.service.getAll().subscribe((b) => []));
+    // this.sub.add(this.service.getAll().subscribe((b) => []));
+    // this.sub.add(this.service.getAll().subscribe((b) => []));
+    this.sub.add(
+      this.service.getAll().subscribe({
+        next: (b) => (this.books = b),
+      })
+    );
+  }
 
   updateSerachTerm(search: string) {
     this.searchTerm = search;

@@ -4,11 +4,9 @@
 <!-- <pre>{{ books | json }}</pre> -->
 <hr />
 <!-- {{ searchTerm }} -->
-<button (click)="show = !show">🤪</button>
-<div *ngIf="show">
-  <app-book-card
-    [content]="book"
-    (detailClick)="goToBookDetails($event)"
-    *ngFor="let book of books | bookFilter: searchTerm"
-  ></app-book-card>
-</div>
+
+<app-book-card
+  [content]="book"
+  (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of books | bookFilter: searchTerm"
+></app-book-card>
