@@ -2,7 +2,13 @@ export interface IBook {
   title: string;
   author: string;
   abstract: string;
-  foo?: {
-    bar: string;
-  };
+  subtitle: string;
+  isbn: string;
+  numPages: number;
+  publisher: string;
+  price: string;
+  cover: string;
+}
+export enum params {
+  details = 'isbn',
 }
