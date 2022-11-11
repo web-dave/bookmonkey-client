@@ -2,11 +2,11 @@
 <input #input (input)="searchTerm = input.value" />
 <hr />
 <!-- <pre>{{ books | json }}</pre> -->
-<hr />
+<!-- <hr /> -->
 <!-- {{ searchTerm }} -->
 
 <app-book-card
   [content]="book"
   (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books | bookFilter: searchTerm"
+  *ngFor="let book of books$ | async | bookFilter: searchTerm"
 ></app-book-card>
