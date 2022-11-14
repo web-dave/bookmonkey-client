@@ -1,0 +1,14 @@
+<h3>Welcome to my 📖🐒</h3>
+<div class="search">
+  <input #input (input)="searchTerm = input.value" />
+</div>
+<hr />
+<!-- <pre>{{ books | json }}</pre> -->
+<!-- <hr /> -->
+<!-- {{ searchTerm }} -->
+
+<app-book-card
+  [content]="book"
+  (detailClick)="goToBookDetails($event)"
+  *ngFor="let book of books$ | async | bookFilter: searchTerm"
+></app-book-card>

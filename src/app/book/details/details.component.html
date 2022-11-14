@@ -1,3 +1,8 @@
-<ng-container *ngIf="book$ | async as book">
+<ng-container *ngIf="book$ | async as book; else loading">
   <h3>{{ book.title }}</h3>
+  <img [src]="book.cover" [alt]="book.title" />
+  <h4>{{ book.subtitle }}</h4>
+  <p>{{ book.abstract }}</p>
 </ng-container>
+<ng-template #loading><h3>loading...</h3></ng-template>
+<a routerLink="..">🔙</a>

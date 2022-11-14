@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { BookComponent } from './book/book.component';
-import { DetailsComponent } from './book/details/details.component';
-import { params } from './models/book';
 
 // :4200/about/me/fo/bar
 
@@ -28,11 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'books',
-    component: BookComponent,
-  },
-  {
-    path: `books/:${params.details}`,
-    component: DetailsComponent,
+    loadChildren: () =>
+      import('./book/book.module').then((module) => module.BookModule),
   },
 ];
 
