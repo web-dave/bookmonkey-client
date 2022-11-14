@@ -1,0 +1,13 @@
+<h3>Create a Book</h3>
+<form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+  <fieldset *ngFor="let field of formKeys">
+    <legend>{{ field }}</legend>
+
+    <input
+      [formControlName]="field"
+      [type]="field === 'numPages' ? 'number' : 'text'"
+    />
+  </fieldset>
+  <button type="submit" [disabled]="!bookForm.valid">Save</button>
+</form>
+{{ bookForm.value | json }}

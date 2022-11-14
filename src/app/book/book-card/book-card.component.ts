@@ -7,6 +7,7 @@ import { IBook } from '../../models/book';
   styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent implements OnInit {
+  @Output() contentChange = new EventEmitter<IBook>();
   @Input() content: IBook = {
     title: '',
     author: '',
@@ -18,6 +19,7 @@ export class BookCardComponent implements OnInit {
     price: '',
     cover: '',
   };
+
   @Output() detailClick = new EventEmitter<IBook>();
   myStyle = {
     color: 'hotpink',
