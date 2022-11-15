@@ -30,7 +30,6 @@
     "@angular-devkit/build-angular": "^15.0.0-rc.3",
     "@angular/cli": "~15.0.0-rc.3",
     "@angular/compiler-cli": "^15.0.0-rc.2",
-    "@cypress/schematic": "^2.2.0",
     "@types/jasmine": "~4.0.0",
     "bookmonkey-api": "^3.1.2",
     "jasmine-core": "~4.1.0",
@@ -39,7 +38,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.8.4",
-    "cypress": "latest"
+    "typescript": "~4.8.4"
   }
 }
