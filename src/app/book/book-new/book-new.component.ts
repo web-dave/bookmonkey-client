@@ -42,10 +42,29 @@ export class BookNewComponent implements OnInit {
     'price',
     'cover',
   ];
+
+  // foo: number;
+
+  myForm = new FormGroup<
+    IForm<{ name: string | null; age: number | null; legs?: number | null }>
+  >({
+    name: new FormControl<string | null>(''),
+    age: new FormControl<number | null>(0),
+  });
+
+  user: { name: string | null; age: number | null; legs?: number | null } = {
+    name: '',
+    age: 0,
+  };
+
   constructor(
     private builder: NonNullableFormBuilder,
     private service: BookService
   ) {
+    this.user = this.myForm.getRawValue();
+    this.myForm.controls.name;
+    this.myForm.addControl('legs', new FormControl(4, Validators.max(999)));
+
     this.bookForm = this.builder.group({
       title: ['', [Validators.required], []],
       author: [''],
@@ -70,6 +89,7 @@ export class BookNewComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.bookForm);
     this.bookForm.getRawValue();
+    setTimeout(() => this.myForm.controls.legs?.setValue(1000), 2000);
     // setTimeout(() => {
     //   this.bookForm.controls['isbn'].disable();
     //   console.log(this.bookForm.getRawValue());

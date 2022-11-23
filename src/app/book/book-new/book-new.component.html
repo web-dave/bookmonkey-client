@@ -1,4 +1,5 @@
 <h3>Create a Book</h3>
+{{ myForm.valid }}
 <form [formGroup]="bookForm" (ngSubmit)="saveBook()">
   <fieldset *ngFor="let field of formKeys">
     <legend>{{ field }}</legend>
