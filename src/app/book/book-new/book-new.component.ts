@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
@@ -12,17 +13,17 @@ export type IForm<T> = {
   [K in keyof T]: FormControl<T[K]>;
 };
 
-// export interface IBookForm {
-//   title: FormControl<string>;
-//   author: FormControl<string>;
-//   abstract: FormControl<string>;
-//   subtitle: FormControl<string>;
-//   isbn: FormControl<string>;
-//   numPages: FormControl<number>;
-//   publisher: FormControl<string>;
-//   price: FormControl<string>;
-//   cover: FormControl<string>;
-// }
+export interface IBookForm {
+  title: FormControl<string>;
+  author: FormArray<FormControl<string>>;
+  abstract: FormControl<string>;
+  subtitle: FormControl<string>;
+  isbn: FormControl<string>;
+  numPages: FormControl<number>;
+  publisher: FormControl<string>;
+  price: FormControl<string>;
+  cover: FormControl<string>;
+}
 
 @Component({
   selector: 'app-book-new',
@@ -30,10 +31,9 @@ export type IForm<T> = {
   styleUrls: ['./book-new.component.scss'],
 })
 export class BookNewComponent implements OnInit {
-  bookForm: FormGroup<IForm<IBook>>;
+  bookForm: FormGroup<IBookForm>;
   formKeys = [
     'title',
-    'author',
     'abstract',
     'subtitle',
     'isbn',
@@ -57,6 +57,10 @@ export class BookNewComponent implements OnInit {
     age: 0,
   };
 
+  get authors() {
+    return this.bookForm.controls.author as FormArray;
+  }
+
   constructor(
     private builder: NonNullableFormBuilder,
     private service: BookService
@@ -67,7 +71,7 @@ export class BookNewComponent implements OnInit {
 
     this.bookForm = this.builder.group({
       title: ['', [Validators.required], []],
-      author: [''],
+      author: this.builder.array([this.builder.control('')]),
       abstract: [''],
       subtitle: [''],
       isbn: ['', [Validators.required]],
@@ -80,9 +84,22 @@ export class BookNewComponent implements OnInit {
     // book.isbn
   }
 
+  deleteAutor(i: number) {
+    (this.bookForm.controls.author as FormArray).removeAt(i);
+  }
+
+  addAutor() {
+    this.authors.push(new FormControl(''));
+  }
+
   saveBook() {
+    const book: IBook = {
+      ...this.bookForm.getRawValue(),
+      author: this.authors.value.join(','),
+    };
+
     this.service
-      .createOne(this.bookForm.getRawValue())
+      .createOne(book)
       .subscribe({ next: (book) => console.log('Saved:', book) });
   }
 

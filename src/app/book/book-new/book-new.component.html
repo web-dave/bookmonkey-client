@@ -9,6 +9,17 @@
       [type]="field === 'numPages' ? 'number' : 'text'"
     />
   </fieldset>
+  <ng-container formArrayName="author">
+    <fieldset>
+      <legend>Author</legend>
+      <ng-container *ngFor="let author of authors.controls; let i = index">
+        <input type="text" [formControlName]="i" />
+        <span (click)="deleteAutor(i)">❌</span>
+      </ng-container>
+      <br />
+      <span (click)="addAutor()">➕</span>
+    </fieldset>
+  </ng-container>
   <button type="submit" [disabled]="!bookForm.valid">Save</button>
 </form>
 {{ bookForm.value | json }}
