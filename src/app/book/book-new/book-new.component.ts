@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormArray,
   FormControl,
   FormGroup,
@@ -9,6 +10,19 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import {
+  catchError,
+  debounce,
+  debounceTime,
+  delay,
+  first,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+  timer,
+} from 'rxjs';
 import { IBook } from 'src/app/models/book';
 import { BookService } from '../book.service';
 
@@ -40,12 +54,43 @@ const isbnValidator: ValidatorFn = (
     : { isbnistfalsch: 'Passt so nicht!' };
 };
 
+const asyncIsbnValidator =
+  (service: BookService): AsyncValidatorFn =>
+  (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.getOne(control.value).pipe(
+      map(() => ({ asyncIsbn: 'Existiert bereits' })),
+      catchError((err) => of(null))
+    );
+  };
+const asyncIsbnValidator2 = (): AsyncValidatorFn => {
+  const service = inject(BookService);
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return control.valueChanges.pipe(
+      tap(() => console.log('before')),
+      delay(500),
+      tap(() => console.log('after')),
+      switchMap((value) =>
+        service.getOne(value).pipe(
+          map(() => null),
+          catchError((err) => of({ asyncIsbn: 'kenne ich nicht' }))
+        )
+      ),
+      first()
+    );
+    // return service.getOne(control.value).pipe(
+    //   map(() => ({ asyncIsbn: 'Existiert bereits' })),
+    //   catchError((err) => of(null))
+    // );
+  };
+};
+
 @Component({
   selector: 'app-book-new',
   templateUrl: './book-new.component.html',
   styleUrls: ['./book-new.component.scss'],
 })
 export class BookNewComponent implements OnInit {
+  private service = inject(BookService);
   bookForm: FormGroup<IBookForm>;
   formKeys = [
     'title',
@@ -76,20 +121,21 @@ export class BookNewComponent implements OnInit {
     return this.bookForm.controls.author as FormArray;
   }
 
-  constructor(
-    private builder: NonNullableFormBuilder,
-    private service: BookService
-  ) {
+  constructor(private builder: NonNullableFormBuilder) {
     this.user = this.myForm.getRawValue();
     this.myForm.controls.name;
     this.myForm.addControl('legs', new FormControl(4, Validators.max(999)));
 
     this.bookForm = this.builder.group({
-      title: ['', [Validators.required], []],
+      title: ['', [Validators.required], [asyncIsbnValidator2()]],
       author: this.builder.array([this.builder.control('')]),
       abstract: [''],
       subtitle: [''],
-      isbn: ['', [Validators.required, isbnValidator], []],
+      isbn: [
+        '',
+        [Validators.required, isbnValidator],
+        [asyncIsbnValidator(this.service)],
+      ],
       numPages: [0],
       publisher: [''],
       price: [''],
