@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { IBook } from 'src/app/models/book';
@@ -24,6 +27,18 @@ export interface IBookForm {
   price: FormControl<string>;
   cover: FormControl<string>;
 }
+
+const isbnValidator: ValidatorFn = (
+  control: AbstractControl<string>
+): ValidationErrors | null => {
+  console.log(control.value);
+
+  const isbnRegex =
+    '^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$';
+  return control.value.match(isbnRegex)
+    ? null
+    : { isbnistfalsch: 'Passt so nicht!' };
+};
 
 @Component({
   selector: 'app-book-new',
@@ -74,7 +89,7 @@ export class BookNewComponent implements OnInit {
       author: this.builder.array([this.builder.control('')]),
       abstract: [''],
       subtitle: [''],
-      isbn: ['', [Validators.required]],
+      isbn: ['', [Validators.required, isbnValidator], []],
       numPages: [0],
       publisher: [''],
       price: [''],
@@ -107,6 +122,8 @@ export class BookNewComponent implements OnInit {
     console.log(this.bookForm);
     this.bookForm.getRawValue();
     setTimeout(() => this.myForm.controls.legs?.setValue(1000), 2000);
+
+    // this.bookForm.valueChanges.subscribe((data) => console.log(data));
     // setTimeout(() => {
     //   this.bookForm.controls['isbn'].disable();
     //   console.log(this.bookForm.getRawValue());
