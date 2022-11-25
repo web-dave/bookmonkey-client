@@ -11,7 +11,7 @@
     "be": "bookmonkey-api",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "e2e:ci": "cypress run"
   },
   "private": true,
   "dependencies": {

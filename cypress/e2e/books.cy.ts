@@ -36,7 +36,7 @@ describe('Books', () => {
         .clear()
         .type('978-3-453-40780-0')
         .should('have.class', 'ng-valid');
-
+      cy.screenshot();
       cy.get('[type="submit"]').should('be.enabled').click();
       cy.get('a').contains('Books').click();
       cy.get('app-book-card').should('have.length', bookCount + 1);
