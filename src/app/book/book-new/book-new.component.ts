@@ -134,7 +134,7 @@ export class BookNewComponent implements OnInit {
       isbn: [
         '',
         [Validators.required, isbnValidator],
-        // [asyncIsbnValidator(this.service)],
+        [asyncIsbnValidator(this.service)],
       ],
       numPages: [0],
       publisher: [''],
