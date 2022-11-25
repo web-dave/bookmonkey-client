@@ -2,6 +2,9 @@
 <div class="search">
   <input #input (input)="searchTerm = input.value" />
 </div>
+<button (click)="count = 4">4</button>
+<button (click)="count = 6">6</button>
+<button (click)="count = -1">all</button>
 <hr />
 <!-- <pre>{{ books | json }}</pre> -->
 <!-- <hr /> -->

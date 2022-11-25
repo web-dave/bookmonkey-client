@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IBook } from 'src/app/models/book';
 import { BookService } from '../book.service';
 
@@ -11,6 +11,7 @@ import { BookService } from '../book.service';
 })
 export class BookListComponent {
   searchTerm = '';
+  count = 4;
   books$: Observable<IBook[]>;
 
   constructor(
@@ -19,6 +20,14 @@ export class BookListComponent {
     private route: ActivatedRoute
   ) {
     this.books$ = this.service.getAll();
+    // .pipe(map((b) => this.getSomeBooks(b, this.count)));
+  }
+
+  getSomeBooks(books: IBook[], i: number) {
+    if (i !== -1) {
+      return books.slice(0, i);
+    }
+    return books;
   }
 
   updateSerachTerm(search: string) {

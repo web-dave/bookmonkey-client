@@ -127,14 +127,14 @@ export class BookNewComponent implements OnInit {
     this.myForm.addControl('legs', new FormControl(4, Validators.max(999)));
 
     this.bookForm = this.builder.group({
-      title: ['', [Validators.required], [asyncIsbnValidator2()]],
+      title: ['', [Validators.required]], //, [asyncIsbnValidator2()]],
       author: this.builder.array([this.builder.control('')]),
       abstract: [''],
       subtitle: [''],
       isbn: [
         '',
         [Validators.required, isbnValidator],
-        [asyncIsbnValidator(this.service)],
+        // [asyncIsbnValidator(this.service)],
       ],
       numPages: [0],
       publisher: [''],
