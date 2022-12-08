@@ -7,9 +7,6 @@ import { Component, OnInit, Sanitizer } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   data = 'Hi';
-  constructor(private sani: Sanitizer) {}
-  foo() {
-    console.log('FOOO');
-  }
+
   ngOnInit(): void {}
 }
