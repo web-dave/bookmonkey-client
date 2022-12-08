@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,10 +6,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
-  auth$ = this.auth.loggedIn$;
-  constructor(private auth: AuthService) {}
+  auth$: any;
+  constructor() {}
 
-  logOut() {
-    this.auth.logOut();
-  }
+  logOut() {}
 }
