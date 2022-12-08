@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 
 // :4200/about/me/fo/bar
@@ -26,6 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'books',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./book/book.module').then((module) => module.BookModule),
   },
