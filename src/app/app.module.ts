@@ -8,6 +8,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { BookPreviewComponent } from './books/book-preview/book-preview.component';
+import { CompComponent } from './comp/comp.component';
 
 const providers: Provider[] = [
   {
@@ -22,6 +24,8 @@ const providers: Provider[] = [
     AboutComponent,
     NavigationComponent,
     LoginComponent,
+    BookPreviewComponent,
+    CompComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [...providers],
