@@ -12,7 +12,7 @@ export class BookService {
   getAll(): Observable<IBook[]> {
     return this.http.get<IBook[]>('http://localhost:4730/books');
   }
-  getOne(isbn: string): Observable<IBook | string> {
+  getOne(isbn: string): Observable<IBook | any> {
     return this.http.get<IBook>('http://localhost:4730/books/' + isbn).pipe(
       catchError((error) => {
         console.log(error);

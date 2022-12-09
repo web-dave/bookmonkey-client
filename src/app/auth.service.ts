@@ -8,7 +8,7 @@ import { BehaviorSubject, distinctUntilChanged, of, tap } from 'rxjs';
 export class AuthService {
   token =
     'SafeToken-Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit._Quibusdam,_eaque_enim_impedit_ullam_voluptatum_qui?_Quisquam_repellat_saepe_accusantium,_ea_distinctio_iusto_hic_animi?_Deserunt_dolore_iusto_tempora_perferendis_ipsum!';
-  private loggedin$$ = new BehaviorSubject(false);
+  private loggedin$$ = new BehaviorSubject(true);
   loggedin$ = this.loggedin$$.pipe();
   private user$$ = new BehaviorSubject<null | { name: string }>(null);
   user$ = this.user$$.asObservable();
