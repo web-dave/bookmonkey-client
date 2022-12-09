@@ -5,6 +5,7 @@
     <legend>{{ field }}</legend>
 
     <input
+      [id]="field"
       [formControlName]="field"
       [type]="field === 'numPages' ? 'number' : 'text'"
     /><span
