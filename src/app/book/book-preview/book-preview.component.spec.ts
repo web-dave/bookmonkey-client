@@ -26,13 +26,17 @@ describe('BookPreviewComponent', () => {
   it('should show the Book Title', () => {
     component.book = book;
     fixture.detectChanges();
-    expect(false).toBeTruthy();
+    expect(compiled.innerText).toContain(book.title);
   });
 
   it('should emit the book', (done) => {
     component.book = book;
     fixture.detectChanges();
     const btn = compiled.querySelector('.btn-info') as HTMLButtonElement;
-    expect(false).toBeTruthy();
+    component.bookselected.subscribe((data) => {
+      expect(data).toBe(book);
+      done();
+    });
+    btn.click();
   });
 });

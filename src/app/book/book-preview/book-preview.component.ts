@@ -27,6 +27,6 @@ export class BookPreviewComponent implements OnInit {
   ngOnInit() {}
 
   selectThisBook() {
-    this.bookselected.emit(this.book);
+    this.bookselected.next(this.book);
   }
 }

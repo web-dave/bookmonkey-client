@@ -2,16 +2,23 @@ import { mockBooks } from '../models/mock';
 import { BookFilterPipe } from './book-filter.pipe';
 
 describe('BookFilterPipe', () => {
-  it('create an instance', () => {
-    expect(false).toBeTruthy();
+  let bookFilter: BookFilterPipe;
+  beforeEach(() => {
+    bookFilter = new BookFilterPipe();
   });
-  it('should frturn book with title "Design Patterns"', () => {
-    expect(false).toBeTruthy();
+  it('create an instance', () => {
+    // console.log(typeof bookFilter);
+    expect(bookFilter).toBeTruthy();
+  });
+  it('should return book with title "Design Patterns"', () => {
+    expect(bookFilter.transform(mockBooks, 'Design')).toEqual([
+      { ...mockBooks[0] },
+    ]);
   });
   it('should return all Books', () => {
-    expect(false).toBeTruthy();
+    expect(bookFilter.transform(mockBooks, '')).toEqual(mockBooks);
   });
   it('should return no Books', () => {
-    expect(false).toBeTruthy();
+    expect(bookFilter.transform(mockBooks, 'Foo')).toEqual([]);
   });
 });
