@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-comp',
   templateUrl: './comp.component.html',
-  styleUrls: ['./comp.component.scss']
+  styleUrls: ['./comp.component.scss'],
 })
 export class CompComponent implements OnInit {
+  data = 'ökdfjvhsödkhsdfköj';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

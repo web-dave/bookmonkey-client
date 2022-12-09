@@ -6,12 +6,12 @@
 <button (click)="count = 6">6</button>
 <button (click)="count = -1">all</button>
 <hr />
-<!-- <pre>{{ books | json }}</pre> -->
+<!-- <pre *ngIf="books$ | async as foo" [innerText]="foo | json"></pre> -->
 <!-- <hr /> -->
 <!-- {{ searchTerm }} -->
 
 <app-book-card
   [content]="book"
   (detailClick)="goToBookDetails($event)"
-  *ngFor="let book of books$ | async | bookFilter: searchTerm"
+  *ngFor="let book of books$ | async | bookFilter : searchTerm"
 ></app-book-card>
