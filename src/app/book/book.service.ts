@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { IBook } from '../models/book';
 
 @Injectable({
@@ -12,8 +12,16 @@ export class BookService {
   getAll(): Observable<IBook[]> {
     return this.http.get<IBook[]>('http://localhost:4730/books');
   }
-  getOne(isbn: string): Observable<IBook> {
-    return this.http.get<IBook>('http://localhost:4730/books/' + isbn);
+  getOne(isbn: string): Observable<IBook | string> {
+    return this.http.get<IBook>('http://localhost:4730/books/' + isbn).pipe(
+      catchError((error) => {
+        console.log(error);
+        if (error.status === 401) {
+          return of('Please log in!!');
+        }
+        return of('Ouch!');
+      })
+    );
   }
   createOne(book: IBook) {
     return this.http.post<IBook>('http://localhost:4730/books', book);

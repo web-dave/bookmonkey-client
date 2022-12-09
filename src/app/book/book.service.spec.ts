@@ -43,10 +43,38 @@ describe('BookService', () => {
         expect(book).toBe(mockBooks[0]);
         done();
       },
+      error: (err) => console.error(err),
     });
 
     backend
       .expectOne('http://localhost:4730/books/1')
       .flush(mockBooks[0], { status: 200, statusText: 'OK' });
+  });
+  it('should return info on 401', (done) => {
+    service.getOne('1').subscribe({
+      next: (data) => {
+        expect(data).toBe('Please log in!!');
+        done();
+      },
+    });
+
+    backend
+      .expectOne('http://localhost:4730/books/1')
+      .flush(
+        { mesage: 'Go get a sub!' },
+        { status: 401, statusText: 'NOT Authorisized' }
+      );
+  });
+  it('should return Ouch on 5xx', (done) => {
+    service.getOne('1').subscribe({
+      next: (data) => {
+        expect(data).toBe('Ouch!');
+        done();
+      },
+    });
+
+    backend
+      .expectOne('http://localhost:4730/books/1')
+      .flush({ mesage: 'Go get a sub!' }, { status: 500, statusText: '💣' });
   });
 });
