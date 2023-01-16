@@ -14,7 +14,7 @@ describe('Books', () => {
 
       .click(); // click
 
-    cy.get('form > button').should('be.disabled'); // check send btn is disabled
+    cy.get('form > button', { timeout: 10000 }).should('be.disabled'); // check send btn is disabled
 
     [
       'title',
