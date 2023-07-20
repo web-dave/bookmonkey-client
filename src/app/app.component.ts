@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IBook } from './book-card/book-card.component';
+import { IBook } from './IBook';
 
 @Component({
   selector: 'app-root',

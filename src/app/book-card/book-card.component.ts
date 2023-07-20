@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IBook } from '../IBook';
 
 @Component({
   selector: 'lr-book-card',
@@ -21,10 +22,4 @@ export class BookCardComponent {
   say(word: string) {
     console.log(word);
   }
-}
-
-export interface IBook {
-  title: string;
-  author: string;
-  abstract: string;
 }
