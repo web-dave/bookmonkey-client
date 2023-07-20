@@ -29,6 +29,6 @@ export class BookCardComponent {
   }
 
   say(word: string) {
-    console.log(word);
+    // console.log(word);
   }
 }
