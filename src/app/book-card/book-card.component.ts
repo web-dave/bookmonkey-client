@@ -23,6 +23,9 @@ export class BookCardComponent {
   };
   constructor() {
     this.say(this.foo);
+    // setTimeout(() => {
+    //   this.content.title = 's.ldkfhsaök';
+    // }, 2000);
   }
 
   say(word: string) {

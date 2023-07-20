@@ -1,1 +1,5 @@
-<lr-book-card [content]="book" (showDetails)="navigate($event)"></lr-book-card>
+<lr-book-card
+  [content]="book"
+  (showDetails)="navigate($event)"
+  *ngFor="let book of books"
+></lr-book-card>
