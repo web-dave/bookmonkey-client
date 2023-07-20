@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lr-book-card',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent {
+  @Input({ required: true }) content!: IBook;
   foo = '<span>Bar</span>';
   myClass = 'pp';
 
@@ -20,4 +21,10 @@ export class BookCardComponent {
   say(word: string) {
     console.log(word);
   }
+}
+
+interface IBook {
+  title: string;
+  author: string;
+  abstract: string;
 }
