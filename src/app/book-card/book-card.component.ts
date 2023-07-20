@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../IBook';
 
 @Component({
@@ -7,10 +7,16 @@ import { IBook } from '../IBook';
   styleUrls: ['./book-card.component.scss'],
 })
 export class BookCardComponent {
+  @Output() showDetails = new EventEmitter<IBook>();
   @Input({ required: true }) content!: IBook;
   foo = '<span>Bar</span>';
   myClass = 'pp';
 
+  pong(event: MouseEvent) {
+    event.preventDefault();
+    this.showDetails.emit(this.content);
+    // console.log(event);
+  }
   myStyle = {
     color: 'lime',
     fontSize: '44px',

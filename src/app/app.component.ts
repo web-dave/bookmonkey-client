@@ -13,4 +13,7 @@ export class AppComponent {
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+  navigate(e: IBook) {
+    console.table(e);
+  }
 }
