@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IBook } from './book-card/book-card.component';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'My';
-  book = {
+  book: IBook = {
     title: 'How to win friends',
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
