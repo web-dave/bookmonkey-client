@@ -7,15 +7,12 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
 const routes: Routes = [
   {
     path: 'books',
-    component: BookComponent,
-  },
-  {
-    path: 'books/:isbn',
-    component: BookDetailComponent,
+    loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
   },
   {
     path: 'about',
-    component: AboutComponent,
+    loadComponent: () =>
+      import('./about/about.component').then((c) => c.AboutComponent),
   },
   {
     path: '',
