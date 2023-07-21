@@ -1,3 +1,4 @@
-<lr-book></lr-book>
+<button (click)="show = !show">Show</button>
+<lr-book *ngIf="show"></lr-book>
 {{ 1234567890 | date : "YYYY-MM/dd" }}
 <hr />

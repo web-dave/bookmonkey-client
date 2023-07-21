@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IBook } from './IBook';
 import { BookService } from './book.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lr-book',
@@ -16,15 +17,22 @@ import { BookService } from './book.service';
     `,
   ],
 })
-export class BookComponent {
+export class BookComponent implements OnInit, OnDestroy {
   searchTerm = '';
   books: IBook[] = [];
-  constructor(private service: BookService) {
-    this.service.getAll().subscribe({
+  sub!: Subscription;
+
+  constructor(private service: BookService) {}
+
+  ngOnInit(): void {
+    this.sub = this.service.getAll().subscribe({
       next: (data) => (this.books = data),
       error: (err) => console.error(err),
       complete: () => console.info('DONE'),
     });
+  }
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
   navigate(e: IBook) {
     console.table(e);
