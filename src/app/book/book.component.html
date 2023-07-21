@@ -1,0 +1,22 @@
+<input
+  #fooinput
+  placeholder="Filter Books"
+  type="text"
+  (input)="searchTerm = fooinput.value"
+/>
+<!--  -->
+<lr-book-card
+  [content]="book"
+  (showDetails)="navigate($event)"
+  *ngFor="
+    let book of books | bookFilter : searchTerm;
+    let i = index;
+    let f = first;
+    let l = last;
+    let e = even;
+    let o = odd;
+    let c = count
+  "
+></lr-book-card>
+<hr />
+<pre>{{ books | json }}</pre>
