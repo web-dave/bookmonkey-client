@@ -10,4 +10,7 @@ export class BookService {
     const url = 'https://api.swapi.dev/ships';
     return this.http.get<IBook[]>('http://localhost:4730/books');
   }
+  getOne(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>('http://localhost:4730/books/' + isbn);
+  }
 }

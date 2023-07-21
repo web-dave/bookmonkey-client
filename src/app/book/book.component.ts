@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IBook } from './IBook';
 import { BookService } from './book.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lr-book',
@@ -22,7 +23,7 @@ export class BookComponent implements OnInit, OnDestroy {
   books: IBook[] = [];
   sub!: Subscription;
 
-  constructor(private service: BookService) {}
+  constructor(private service: BookService, private router: Router) {}
 
   ngOnInit(): void {
     this.sub = this.service.getAll().subscribe({
@@ -37,5 +38,6 @@ export class BookComponent implements OnInit, OnDestroy {
   }
   navigate(e: IBook) {
     console.table(e);
+    this.router.navigate(['books', e.isbn]);
   }
 }
