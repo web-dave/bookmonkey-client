@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IBook } from './IBook';
 import { Observable, from, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {
@@ -21,7 +22,8 @@ export class BookService {
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
   ];
+  constructor(private http: HttpClient) {}
   getAll(): Observable<IBook[]> {
-    return of(this.books);
+    return this.http.get<IBook[]>('http://localhost:4730/books');
   }
 }
