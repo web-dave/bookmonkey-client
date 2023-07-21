@@ -33,6 +33,7 @@ export class BookComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    console.log('Tschö mit Ö');
   }
   navigate(e: IBook) {
     console.table(e);
