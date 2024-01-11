@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookCardComponent } from './book-card/book-card.component';
+import { IBook } from './book';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { BookCardComponent } from './book-card/book-card.component';
 })
 export class AppComponent {
   title = 'bookmonkey-client 🤩';
-  book = {
+  book: IBook = {
     title: 'How to win friends',
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
