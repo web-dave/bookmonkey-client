@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../book';
 
 @Component({
@@ -9,6 +9,7 @@ import { IBook } from '../book';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
+  @Output() detailClick = new EventEmitter<IBook>();
   @Input() content: IBook = {
     abstract: '',
     author: '',
@@ -22,5 +23,7 @@ export class BookCardComponent {
   handleDetailClick(event: MouseEvent) {
     console.log(event);
     console.log((event.target as HTMLAnchorElement).getAttribute('data-info'));
+
+    this.detailClick.emit(this.content);
   }
 }
