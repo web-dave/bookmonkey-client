@@ -18,4 +18,9 @@ export class BookCardComponent {
     color: 'red',
     background: 'lime',
   };
+
+  handleDetailClick(event: MouseEvent) {
+    console.log(event);
+    console.log((event.target as HTMLAnchorElement).getAttribute('data-info'));
+  }
 }

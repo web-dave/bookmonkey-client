@@ -1,4 +1,9 @@
 <h3>{{ content.title }}</h3>
 <h4>{{ content.author }}</h4>
-<a [style]="customStyle">Details</a>
+<a
+  data-info="Hallo zusammen"
+  [style]="customStyle"
+  (click)="handleDetailClick($event)"
+  >Details</a
+>
 <p>{{ content.abstract }}</p>
