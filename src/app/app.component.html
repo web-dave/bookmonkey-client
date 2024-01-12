@@ -1,18 +1,1 @@
-<hr />
-<pre>{{ books | json }}</pre>
-<hr />
-<!-- <pre>{{ JSON.stringify(books) }}</pre> -->
-<input type="text" #search (input)="setSearchTerm(search.value)" />
-{{ searchTerm }}
-<app-book-card
-  [content]="book"
-  *ngFor="let book of books | filterBooks : searchTerm"
-  (detailClick)="pong($event)"
-/>
-<hr />
-<!-- <app-book-card
-  [content]="book"
-  *ngFor="let book of books"
-  (detailClick)="pong($event)"
->
-</app-book-card> -->
+<app-book></app-book>
