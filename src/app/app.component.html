@@ -1,3 +1,7 @@
-<app-book-card [content]="book" (detailClick)="pong($event)">
+<app-book-card
+  [content]="book"
+  *ngFor="let book of books"
+  (detailClick)="pong($event)"
+>
   <!-- <h1>Moin</h1> -->
 </app-book-card>
