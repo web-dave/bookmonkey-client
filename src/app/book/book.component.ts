@@ -17,7 +17,9 @@ export class BookComponent {
   books: IBook[] = [];
 
   constructor(private service: BookService) {
-    this.books = this.service.getAll();
+    this.service.getAll().subscribe({
+      next: (data) => (this.books = data),
+    });
   }
 
   setSearchTerm(s: string) {

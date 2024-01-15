@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IBook } from './book';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +23,11 @@ export class BookService {
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
   ];
-  constructor() {}
+  constructor() {
+    console.log('Ich bin Hier');
+  }
 
-  getAll(): IBook[] {
-    return this.books;
+  getAll(): Observable<IBook[]> {
+    return of(this.books);
   }
 }
