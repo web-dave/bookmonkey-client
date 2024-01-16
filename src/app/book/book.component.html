@@ -3,6 +3,8 @@
 <!-- <pre>{{ books | json }}</pre> -->
 <hr />
 
+<h1 *ngIf="error">Danger!</h1>
+
 <!-- <pre>{{ JSON.stringify(books) }}</pre> -->
 <h1 *ngIf="loading">Loading...</h1>
 <input type="text" #search (input)="setSearchTerm(search.value)" />
