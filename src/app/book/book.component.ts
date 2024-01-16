@@ -7,53 +7,32 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IBook } from './book';
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 
 import { BookCardComponent } from './book-card/book-card.component';
 import { FilterBooksPipe } from './filter-books.pipe';
 import { BookService } from './book.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BookCardComponent, FilterBooksPipe, JsonPipe, NgFor, NgIf],
+  imports: [
+    BookCardComponent,
+    FilterBooksPipe,
+    JsonPipe,
+    NgFor,
+    NgIf,
+    AsyncPipe,
+  ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })
-export class BookComponent implements OnDestroy, OnInit {
+export class BookComponent {
   searchTerm = '';
-  books: IBook[] = [];
   loading = true;
 
-  private service = inject(BookService)
-    .getAll()
-    .pipe(takeUntilDestroyed())
-    .subscribe({
-      next: (data) => {
-        this.books = data;
-        this.loading = false;
-      },
-    });
-
-  constructor(private dref: DestroyRef) {
-    console.log(document.querySelector('input'));
-  }
-
-  ngOnInit(): void {
-    // this.service
-    //   .getAll()
-    //   .pipe(takeUntilDestroyed(this.dref))
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.books = data;
-    //       this.loading = false;
-    //     },
-    //   });
-  }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  books$: Observable<IBook[]> = inject(BookService).getAll();
 
   setSearchTerm(s: string) {
     this.searchTerm = s;

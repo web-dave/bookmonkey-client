@@ -9,7 +9,7 @@
 {{ searchTerm }}
 <app-book-card
   [content]="book"
-  *ngFor="let book of books | filterBooks : searchTerm"
+  *ngFor="let book of books$ | async | filterBooks : searchTerm"
   (detailClick)="pong($event)"
 />
 <hr />

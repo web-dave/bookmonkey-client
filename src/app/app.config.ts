@@ -6,12 +6,16 @@ export const appConfig: ApplicationConfig = {
 };
 
 // const obs = {
-//   value:1,
-//   observer:null,
-//   subscribe:(observer:any)=>{
-//     obs.observer = observer;
-//     fetch('https://api.swapi.dev/ships').then(data =>{
-//       obs.observer?.next(data)
-//     })
-//   }
-// }
+//   value: 1,
+//   observer: [],
+//   subscribe: (observer: any) => {
+//     obs.observer.push(observer);
+//     fetch('https://api.swapi.dev/ships').then((data) => {
+//       obs.observer?.next(data);
+//     });
+
+//     return () => {
+//       obs.observer.splice(1);
+//     };
+//   },
+// };
