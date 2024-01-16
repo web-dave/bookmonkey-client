@@ -12,4 +12,5 @@ import { BookComponent } from './book/book.component';
 export class AppComponent {
   JSON = JSON;
   title = 'bookmonkey-client 🤩';
+  show = true;
 }

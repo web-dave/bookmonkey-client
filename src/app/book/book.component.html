@@ -1,7 +1,10 @@
 <hr />
+<ng-content></ng-content>
 <!-- <pre>{{ books | json }}</pre> -->
 <hr />
+
 <!-- <pre>{{ JSON.stringify(books) }}</pre> -->
+<h1 *ngIf="loading">Loading...</h1>
 <input type="text" #search (input)="setSearchTerm(search.value)" />
 {{ searchTerm }}
 <app-book-card
