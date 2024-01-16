@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect, computed } from '@angular/core';
 import { IBook } from './book';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -21,6 +21,8 @@ export class BookComponent {
   loading = true;
   error = false;
 
+  count = 0;
+
   books = toSignal(
     inject(BookService)
       .getAll()
@@ -36,6 +38,13 @@ export class BookComponent {
         })
       )
   );
+
+  private foo = effect(() => {
+    console.log(this.books()?.length);
+    this.count = this.books()?.length as number;
+  });
+
+  anzahl = computed<number | undefined>(() => this.books()?.length);
 
   setSearchTerm(s: string) {
     this.searchTerm = s;
