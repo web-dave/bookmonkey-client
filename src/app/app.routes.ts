@@ -1,19 +1,24 @@
 import { Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { BookComponent } from './book/book.component';
-import { BookDetailComponent } from './book/book-detail/book-detail.component';
+
+enum routPath {
+  about = 'about',
+  books = 'books',
+}
 
 export const routes: Routes = [
   {
     path: 'about',
+    title: 'Ueber uns',
     component: AboutComponent,
   },
   {
-    path: 'books',
-    component: BookComponent,
-  },
-  {
-    path: 'books/detail/:isbn',
-    component: BookDetailComponent,
+    path: routPath.books,
+    loadChildren: () => import('./book/book.routes'),
   },
 ];
+
+// foo/bar/baz
+// foo/bar [baz]
+// foo [bar, baz]
+// bar/baz
