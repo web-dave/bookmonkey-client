@@ -8,12 +8,19 @@ import { FilterBooksPipe } from './filter-books.pipe';
 import { BookService } from './book.service';
 import { catchError, of, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BookCardComponent, FilterBooksPipe, JsonPipe, NgFor, NgIf],
+  imports: [
+    BookCardComponent,
+    FilterBooksPipe,
+    JsonPipe,
+    NgFor,
+    NgIf,
+    RouterLink,
+  ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })

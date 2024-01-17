@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input type="text" formControlName="author" />
+  <input type="text" formControlName="title" />
+  <input type="text" formControlName="isbn" />
+  <input type="text" formControlName="abstract" />
+  <button type="submit" [disabled]="!form.valid">Save</button>
+</form>
+
+<pre>{{ form.value | json }}</pre>
