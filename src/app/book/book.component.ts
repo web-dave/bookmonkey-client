@@ -8,6 +8,7 @@ import { FilterBooksPipe } from './filter-books.pipe';
 import { BookService } from './book.service';
 import { catchError, of, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -46,11 +47,14 @@ export class BookComponent {
 
   anzahl = computed<number | undefined>(() => this.books()?.length);
 
+  constructor(private router: Router) {}
+
   setSearchTerm(s: string) {
     this.searchTerm = s;
   }
 
   pong(b: IBook) {
     console.table(b);
+    this.router.navigate(['books', 'detail', b.isbn]);
   }
 }

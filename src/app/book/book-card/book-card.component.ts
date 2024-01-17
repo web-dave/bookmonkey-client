@@ -14,6 +14,12 @@ export class BookCardComponent {
     abstract: '',
     author: '',
     title: '',
+    subtitle: '',
+    isbn: '',
+    numPages: 123,
+    publisher: '',
+    price: '',
+    cover: '',
   };
   customStyle = {
     color: 'red',

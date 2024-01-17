@@ -37,4 +37,8 @@ export class BookService {
     // return of(this.books);
     return this.http.get<IBook[]>(this.baseUrl);
   }
+  getOne(isbn: string): Observable<IBook> {
+    // return of(this.books);
+    return this.http.get<IBook>(this.baseUrl + '/' + isbn);
+  }
 }
