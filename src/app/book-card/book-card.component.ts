@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../book.interface';
 
 @Component({
@@ -10,9 +10,17 @@ import { IBook } from '../book.interface';
 })
 export class BookCardComponent {
   @Input({ required: true }) content!: IBook;
+  @Output() detailClick = new EventEmitter<IBook>();
 
   myStyla = {
     color: 'purple',
     backgroundColor: 'orange',
   };
+
+  sendPing(e: MouseEvent) {
+    console.log(e);
+    const elem = e.target as HTMLAnchorElement;
+    console.log(elem);
+    this.detailClick.emit(this.content);
+  }
 }

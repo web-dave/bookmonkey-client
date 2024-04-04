@@ -17,4 +17,7 @@ export class AppComponent {
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+  pong(event: IBook) {
+    console.log(event);
+  }
 }
