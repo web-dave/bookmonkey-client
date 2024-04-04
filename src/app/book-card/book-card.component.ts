@@ -1,4 +1,5 @@
 import { Component, Input, input } from '@angular/core';
+import { IBook } from '../book.interface';
 
 @Component({
   selector: 'app-book-card',
@@ -8,7 +9,7 @@ import { Component, Input, input } from '@angular/core';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
-  @Input() content: any;
+  @Input({ required: true }) content!: IBook;
 
   myStyla = {
     color: 'purple',
