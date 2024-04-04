@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-book-card',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
+  @Input() content: any;
+
   myStyla = {
     color: 'purple',
     backgroundColor: 'orange',
