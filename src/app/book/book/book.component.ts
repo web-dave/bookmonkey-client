@@ -14,11 +14,15 @@ import { BookApiService } from '../book-api.service';
 })
 export class BookComponent {
   searchString = '';
-  books: IBook[] = inject(BookApiService).getAll();
+  service = inject(BookApiService);
+  books: IBook[] = [];
 
-  // constructor(private service: BookApiService) {
-  //   this.books = service.getAll();
-  // }
+  constructor() {
+    this.service.getAll().subscribe({
+      next: (data) => (this.books = data),
+      complete: () => console.log('Fertig'),
+    });
+  }
 
   pong(event: IBook) {
     console.log(event);
