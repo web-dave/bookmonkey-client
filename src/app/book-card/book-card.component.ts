@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../book.interface';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss',
 })
