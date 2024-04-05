@@ -36,13 +36,4 @@ export class BookComponent {
   setSearchString(event: Event) {
     this.searchString = (event.target as HTMLInputElement).value;
   }
-  transform(books: IBook[] = [], searchstring: string = ''): IBook[] {
-    console.log('methode', searchstring);
-    return books.filter((book) => {
-      return book.title.toLowerCase().includes(searchstring.toLowerCase());
-      // ||
-      // book.author.toLowerCase().includes(searchstring.toLowerCase()) ||
-      // book.abstract.toLowerCase().includes(searchstring.toLowerCase())
-    });
-  }
 }
