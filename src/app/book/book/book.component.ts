@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IBook } from '../book.interface';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { NgFor } from '@angular/common';
 import { BookFilterPipe } from '../book-filter.pipe';
+import { BookApiService } from '../book-api.service';
 
 @Component({
   selector: 'app-book',
@@ -13,23 +14,12 @@ import { BookFilterPipe } from '../book-filter.pipe';
 })
 export class BookComponent {
   searchString = '';
-  books: IBook[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
+  books: IBook[] = inject(BookApiService).getAll();
+
+  // constructor(private service: BookApiService) {
+  //   this.books = service.getAll();
+  // }
+
   pong(event: IBook) {
     console.log(event);
   }
