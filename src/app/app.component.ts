@@ -31,10 +31,24 @@ export class AppComponent {
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
   ];
+  constructor() {
+    // setInterval(() => {
+    //   this.searchString = 'why';
+    // }, 1500);
+  }
   pong(event: IBook) {
     console.log(event);
   }
   setSearchString(event: Event) {
     this.searchString = (event.target as HTMLInputElement).value;
+  }
+  transform(books: IBook[] = [], searchstring: string = ''): IBook[] {
+    console.log('methode', searchstring);
+    return books.filter((book) => {
+      return book.title.toLowerCase().includes(searchstring.toLowerCase());
+      // ||
+      // book.author.toLowerCase().includes(searchstring.toLowerCase()) ||
+      // book.abstract.toLowerCase().includes(searchstring.toLowerCase())
+    });
   }
 }
