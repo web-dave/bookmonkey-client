@@ -1,15 +1,1 @@
-<!-- *ngFor="let book of books" -->
-<input type="text" (input)="setSearchString($event)" />
-<!-- {{ searchString }} -->
-<hr />
-@for (book of books | bookFilter: searchString; track $index) {
-  <app-book-card [content]="book" (detailClick)="pong($event)" />
-  <!-- 
-    even: {{ $even }} | 
-    odd: {{ $odd }} |
-    first: {{ $first }} |
-    last: {{ $last }}| 
-    count: {{ $count }} 
-  -->
-}
-<!-- {{ transform(books, searchString) }} -->
+<app-book />

@@ -1,54 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
-import { BookCardComponent } from './book-card/book-card.component';
-import { IBook } from './book.interface';
-import { BookFilterPipe } from './book-filter.pipe';
+import { CommonModule } from '@angular/common';
+import { BookComponent } from './book/book/book.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, BookCardComponent, NgFor, BookFilterPipe],
+  imports: [CommonModule, BookComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'bookmonkey-client ;)';
-  searchString = '';
-  books: IBook[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
-  constructor() {
-    // setInterval(() => {
-    //   this.searchString = 'why';
-    // }, 1500);
-  }
-  pong(event: IBook) {
-    console.log(event);
-  }
-  setSearchString(event: Event) {
-    this.searchString = (event.target as HTMLInputElement).value;
-  }
-  transform(books: IBook[] = [], searchstring: string = ''): IBook[] {
-    console.log('methode', searchstring);
-    return books.filter((book) => {
-      return book.title.toLowerCase().includes(searchstring.toLowerCase());
-      // ||
-      // book.author.toLowerCase().includes(searchstring.toLowerCase()) ||
-      // book.abstract.toLowerCase().includes(searchstring.toLowerCase())
-    });
-  }
-}
+export class AppComponent {}
