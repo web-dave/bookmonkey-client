@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './book.interface';
+import { BookFilterPipe } from './book-filter.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, BookCardComponent, NgFor],
+  imports: [CommonModule, BookCardComponent, NgFor, BookFilterPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'bookmonkey-client ;)';
+  searchString = '';
   books: IBook[] = [
     {
       title: 'How to win friends',
@@ -31,5 +33,8 @@ export class AppComponent {
   ];
   pong(event: IBook) {
     console.log(event);
+  }
+  setSearchString(event: Event) {
+    this.searchString = (event.target as HTMLInputElement).value;
   }
 }
