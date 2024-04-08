@@ -10,26 +10,11 @@ export class BookApiService {
   url = 'http://localhost:4730/books';
   http = inject(HttpClient);
 
-  // private books: IBook[] = [
-  //   {
-  //     title: 'How to win friends',
-  //     author: 'Dale Carnegie',
-  //     abstract: 'How to Win Friends and Influence ...',
-  //   },
-  //   {
-  //     title: 'The Willpower Instinct: How Self-Control Works ...',
-  //     author: 'Kelly McGonigal',
-  //     abstract: 'Based on Stanford University ...',
-  //   },
-  //   {
-  //     author: 'Simon Sinek',
-  //     title: 'Start with WHY',
-  //     abstract: "START WITH WHY shows that the leaders who've ...",
-  //   },
-  // ];
-
   getAll(): Observable<IBook[]> {
-    // return of(this.books);
     return this.http.get<IBook[]>(this.url);
+  }
+
+  getOne(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>(this.url + '/' + isbn);
   }
 }

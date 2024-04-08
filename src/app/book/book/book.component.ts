@@ -12,6 +12,7 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { BookFilterPipe } from '../book-filter.pipe';
 import { BookApiService } from '../book-api.service';
 import { Observable, Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -24,9 +25,12 @@ export class BookComponent {
   searchString = '';
   books$: Observable<IBook[]> = inject(BookApiService).getAll();
   destref = inject(DestroyRef);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
 
   pong(event: IBook) {
     console.log(event);
+    this.router.navigate([event.isbn], { relativeTo: this.route });
   }
   setSearchString(event: Event) {
     this.searchString = (event.target as HTMLInputElement).value;
