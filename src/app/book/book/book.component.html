@@ -1,5 +1,10 @@
 <h2>Welcome to my Book Store</h2>
 <input type="text" (input)="setSearchString($event)" />
+<!-- 
+  obser.subscribe({
+    next: $event => setSearchString($event)
+  })
+ -->
 <hr />
 @for (book of books | bookFilter: searchString; track $index) {
   <app-book-card [content]="book" (detailClick)="pong($event)" />
