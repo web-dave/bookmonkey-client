@@ -25,25 +25,6 @@ export class BookComponent {
   books$: Observable<IBook[]> = inject(BookApiService).getAll();
   destref = inject(DestroyRef);
 
-  // books: IBook[] = [];
-  // subscription = new Subscription();
-
-  // constructor() {}
-  // ngOnDestroy(): void {
-  //   // this.subscription?.unsubscribe();
-  // }
-  // ngOnInit(): void {
-  //   // this.subscription.add(
-  //   this.service
-  //     .getAll()
-  //     .pipe(takeUntilDestroyed(this.destref))
-  //     .subscribe({
-  //       next: (data) => (this.books = data),
-  //       complete: () => console.log('Fertig'),
-  //     });
-  //   // );
-  // }
-
   pong(event: IBook) {
     console.log(event);
   }
