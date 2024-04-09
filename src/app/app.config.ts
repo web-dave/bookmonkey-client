@@ -5,6 +5,7 @@ import {
   withComponentInputBinding,
   withPreloading,
   PreloadAllModules,
+  withDebugTracing,
 } from '@angular/router';
 import { appRoutes } from './app.routes';
 
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
       appRoutes,
       withComponentInputBinding(),
       withPreloading(PreloadAllModules),
+      withDebugTracing(),
     ),
   ],
 };
