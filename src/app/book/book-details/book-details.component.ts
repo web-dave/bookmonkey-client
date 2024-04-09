@@ -11,6 +11,8 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
   styleUrl: './book-details.component.scss',
 })
 export class BookDetailsComponent {
+  snapshot = inject(ActivatedRoute).snapshot;
+  // isbn = inject(ActivatedRoute).snapshot.paramMap.get('isbn'); // Automatisch auslesen
   isbn = inject(ActivatedRoute).snapshot.params['isbn']; // Automatisch auslesen
   book$ = inject(BookApiService).getOne(this.isbn);
 }
