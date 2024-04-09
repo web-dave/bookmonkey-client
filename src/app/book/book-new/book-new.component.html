@@ -1,0 +1,9 @@
+<form [formGroup]="bookForm" (ngSubmit)="submit()">
+  <input type="text" placeholder="Author" formControlName="author" /><br />
+  <input type="text" placeholder="Title" formControlName="title" /><br />
+  <input type="text" placeholder="Subtitle" formControlName="subtitle" /><br />
+  <input type="text" placeholder="Abstract" formControlName="abstract" /><br />
+  ....
+  <button type="submit">Save</button>
+</form>
+<pre>{{ bookForm.value | json }}</pre>

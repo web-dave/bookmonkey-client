@@ -6,6 +6,8 @@
   })
  -->
 <hr />
+<a routerLink="new">NEW</a>
+<hr />
 @for (book of books$ | async | bookFilter: searchString; track $index) {
   <app-book-card [content]="book" (detailClick)="pong($event)" />
 }

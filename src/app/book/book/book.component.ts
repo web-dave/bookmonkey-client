@@ -12,12 +12,12 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { BookFilterPipe } from '../book-filter.pipe';
 import { BookApiService } from '../book-api.service';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BookCardComponent, NgFor, BookFilterPipe, AsyncPipe],
+  imports: [BookCardComponent, NgFor, BookFilterPipe, AsyncPipe, RouterLink],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })

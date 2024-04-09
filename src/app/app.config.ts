@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
       appRoutes,
       withComponentInputBinding(),
       withPreloading(PreloadAllModules),
-      withDebugTracing(),
+      // withDebugTracing(),
     ),
   ],
 };
