@@ -10,6 +10,6 @@ export const leaveGuard: CanDeactivateFn<BookDetailsComponent> = (
   nextState,
 ) => {
   console.log(component, currentRoute, currentState, nextState);
-  const service = inject(BookApiService);
+
   return window.confirm('Echt jetzt?');
 };
