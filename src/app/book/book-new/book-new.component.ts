@@ -25,4 +25,11 @@ export class BookNewComponent {
   submit() {
     console.log(this.bookForm.value);
   }
+  constructor() {
+    this.bookForm.controls.title.statusChanges;
+
+    this.bookForm.controls.title.valueChanges.subscribe({
+      next: (data) => console.log(data),
+    });
+  }
 }
