@@ -11,6 +11,7 @@ import {
 import { BookApiService } from '../book-api.service';
 import { IBook } from '../book.interface';
 import { authorValidator } from './author.validator';
+import { isbnValidator } from './isbn.validator';
 
 type IBookForm = FormGroup<{
   title: FormControl<string>;
@@ -42,7 +43,7 @@ export class BookNewComponent {
     isbn: [
       '',
       [Validators.required, Validators.minLength(13), Validators.maxLength(13)],
-      [],
+      [isbnValidator()],
     ],
     numPages: [0, []],
     publisher: ['', []],

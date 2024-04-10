@@ -22,6 +22,9 @@
       {{ bookForm.get("isbn")?.errors?.["minlength"].requiredLength }}</small
     >
   }
+  @if (bookForm.get("isbn")?.hasError("isbnExists")) {
+    <small>{{ bookForm.get("isbn")?.errors?.["isbnExists"] }}</small>
+  }
   <br />
   <input type="text" placeholder="Abstract" formControlName="abstract" /><br />
   ....

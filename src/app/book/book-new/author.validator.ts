@@ -1,4 +1,9 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+  AsyncValidatorFn,
+} from '@angular/forms';
 
 export const authorValidator: ValidatorFn = (
   control: AbstractControl,
