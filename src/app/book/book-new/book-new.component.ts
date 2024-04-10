@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book-new',
@@ -11,11 +11,15 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class BookNewComponent {
   bookForm = inject(FormBuilder).group({
-    title: ['', []],
+    title: ['', [Validators.required], []],
     author: ['', []],
     abstract: ['', []],
     subtitle: ['', []],
-    isbn: ['', [], []],
+    isbn: [
+      '',
+      [Validators.required, Validators.minLength(13), Validators.maxLength(13)],
+      [],
+    ],
     numPages: [0, []],
     publisher: ['', []],
     price: ['', []],
@@ -26,7 +30,7 @@ export class BookNewComponent {
     console.log(this.bookForm.value);
   }
   constructor() {
-    this.bookForm.controls.title.statusChanges;
+    // this.bookForm.controls.title.statusChanges;
 
     this.bookForm.controls.title.valueChanges.subscribe({
       next: (data) => console.log(data),

@@ -1,4 +1,4 @@
-import { CanActivateFn, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookComponent } from './book/book.component';
 import { leaveGuard } from './leave.guard';

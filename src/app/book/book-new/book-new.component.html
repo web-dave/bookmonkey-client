@@ -1,9 +1,26 @@
 <form [formGroup]="bookForm" (ngSubmit)="submit()">
   <input type="text" placeholder="Author" formControlName="author" /><br />
-  <input type="text" placeholder="Title" formControlName="title" /><br />
-  <input type="text" placeholder="Subtitle" formControlName="subtitle" /><br />
+  <input type="text" placeholder="Title" formControlName="title" />
+  @if (
+    bookForm.get("title")?.dirty && bookForm.get("title")?.hasError("required")
+  ) {
+    <small>Title ist required!</small>
+  }
+  <br />
+  <input type="text" placeholder="ISBN" formControlName="isbn" />
+  @if (
+    bookForm.get("isbn")?.dirty && bookForm.get("isbn")?.hasError("minlength")
+  ) {
+    <small
+      >Es sind leider nur
+      {{ bookForm.get("isbn")?.errors?.["minlength"].actualLength }} Zeichen,
+      wir brauchen aber
+      {{ bookForm.get("isbn")?.errors?.["minlength"].requiredLength }}</small
+    >
+  }
+  <br />
   <input type="text" placeholder="Abstract" formControlName="abstract" /><br />
   ....
-  <button type="submit">Save</button>
+  <button type="submit" [disabled]="!bookForm.valid">Save</button>
 </form>
 <pre>{{ bookForm.value | json }}</pre>
