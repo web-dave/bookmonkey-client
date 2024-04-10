@@ -8,6 +8,7 @@
 <hr />
 <a routerLink="new">NEW</a>
 <hr />
-@for (book of books$ | async | bookFilter: searchString; track $index) {
+({{ numberOfBooks() }})
+@for (book of books() | bookFilter: searchString; track $index) {
   <app-book-card [content]="book" (detailClick)="pong($event)" />
 }

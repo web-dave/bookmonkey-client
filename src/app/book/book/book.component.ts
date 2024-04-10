@@ -3,9 +3,11 @@ import {
   DestroyRef,
   OnDestroy,
   OnInit,
+  Signal,
+  computed,
   inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { IBook } from '../book.interface';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { AsyncPipe, NgFor } from '@angular/common';
@@ -23,7 +25,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 })
 export class BookComponent {
   searchString = '';
-  books$: Observable<IBook[]> = inject(BookApiService).getAll();
+  books: Signal<IBook[]> = toSignal(inject(BookApiService).getAll(), {
+    initialValue: [],
+  });
+  numberOfBooks: Signal<number> = computed(() => this.books().length);
   destref = inject(DestroyRef);
   router = inject(Router);
   route = inject(ActivatedRoute);
