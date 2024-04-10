@@ -1,6 +1,28 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+  NonNullableFormBuilder,
+} from '@angular/forms';
+import { BookApiService } from '../book-api.service';
+import { IBook } from '../book.interface';
+import { authorValidator } from './author.validator';
+
+type IBookForm = FormGroup<{
+  title: FormControl<string>;
+  isbn: FormControl<string>;
+  author: FormControl<string>;
+  abstract: FormControl<string>;
+  subtitle: FormControl<string>;
+  numPages: FormControl<number>;
+  publisher: FormControl<string>;
+  price: FormControl<string>;
+  cover: FormControl<string>;
+}>;
 
 @Component({
   selector: 'app-book-new',
@@ -10,9 +32,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './book-new.component.scss',
 })
 export class BookNewComponent {
-  bookForm = inject(FormBuilder).group({
+  service = inject(BookApiService);
+  // bookForm: IBookForm = inject(FormBuilder).group({
+  bookForm: IBookForm = inject(NonNullableFormBuilder).group({
     title: ['', [Validators.required], []],
-    author: ['', []],
+    author: ['', [authorValidator]],
     abstract: ['', []],
     subtitle: ['', []],
     isbn: [
@@ -27,7 +51,9 @@ export class BookNewComponent {
   });
 
   submit() {
-    console.log(this.bookForm.value);
+    console.log(this.bookForm.getRawValue());
+    const newBook: IBook = this.bookForm.getRawValue();
+    this.service.create(newBook).subscribe();
   }
   constructor() {
     // this.bookForm.controls.title.statusChanges;

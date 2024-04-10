@@ -1,5 +1,9 @@
 <form [formGroup]="bookForm" (ngSubmit)="submit()">
-  <input type="text" placeholder="Author" formControlName="author" /><br />
+  <input type="text" placeholder="Author" formControlName="author" />
+  @if (bookForm.get("author")?.hasError("numAuthor")) {
+    <small>{{ bookForm.get("author")?.errors?.["numAuthor"] }}</small>
+  }
+  <br />
   <input type="text" placeholder="Title" formControlName="title" />
   @if (
     bookForm.get("title")?.dirty && bookForm.get("title")?.hasError("required")
