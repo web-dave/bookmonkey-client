@@ -5,8 +5,12 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './book-card.component.html',
-  styleUrl: './book-card.component.scss'
+  styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
+  isAchtung = true;
 
+  constructor() {
+    setTimeout(() => (this.isAchtung = false), 3000);
+  }
 }
