@@ -11,7 +11,16 @@ import { IBook } from '../book.interface';
 export class BookCardComponent {
   @Input({ required: true }) content?: IBook;
 
-  isAchtung = true;
+  handleDetailClick(event: MouseEvent | Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('a', event);
+  }
+  foo(evt: MouseEvent) {
+    console.log('div', evt);
+  }
+
+  isAchtung = false;
 
   constructor() {
     setTimeout(() => (this.isAchtung = false), 3000);
