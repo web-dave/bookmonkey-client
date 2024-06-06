@@ -11,4 +11,10 @@ import { BookCardComponent } from './book-card/book-card.component';
 })
 export class AppComponent {
   title = 'bookmonkey-clientÖ';
+
+  book = {
+    title: 'How to win friends',
+    author: 'Dale Carnegie',
+    abstract: 'In this book ...',
+  };
 }
