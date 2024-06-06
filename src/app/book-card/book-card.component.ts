@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../book.interface';
 
 @Component({
@@ -10,14 +10,16 @@ import { IBook } from '../book.interface';
 })
 export class BookCardComponent {
   @Input({ required: true }) content?: IBook;
+  @Output() detailClick = new EventEmitter<IBook>();
 
   handleDetailClick(event: MouseEvent | Event) {
     event.preventDefault();
+    console.log('a', event, this.content);
+    this.detailClick.emit(this.content);
     event.stopPropagation();
-    console.log('a', event);
   }
   foo(evt: MouseEvent) {
-    console.log('div', evt);
+    // console.log('div', evt);
   }
 
   isAchtung = false;
