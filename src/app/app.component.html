@@ -1,16 +1,6 @@
-<app-book-card
-  [content]="book"
-  (detailClick)="navigate($event)"
-  *ngFor="let book of books"
-></app-book-card>
-<!-- <table>
-  <thead>
-    <th>Moin</th>
-  </thead>
-  <tbody>
-    <td>123</td>
-  </tbody>
-</table>
-<hr />
-<th>Moin</th>
-<td>123</td> -->
+@for (book of books; track book.title) {
+  <app-book-card
+    [content]="book"
+    (detailClick)="navigate($event)"
+  ></app-book-card>
+}

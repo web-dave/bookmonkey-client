@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './book.interface';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BookCardComponent, NgFor],
+  imports: [RouterOutlet, BookCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
