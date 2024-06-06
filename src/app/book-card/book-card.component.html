@@ -1,7 +1,7 @@
-<h3>{{ content.title }}</h3>
-<h4>{{ content.author }}</h4>
+<h3>{{ content?.title }}</h3>
+<h4>{{ content?.author }}</h4>
 
 <a href="#">Details</a>
 <p [class.achtung]="isAchtung">
-  {{ content.abstract }}
+  {{ content?.abstract }}
 </p>

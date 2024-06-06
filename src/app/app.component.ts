@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BookCardComponent } from './book-card/book-card.component';
+import { IBook } from './book.interface';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { BookCardComponent } from './book-card/book-card.component';
 export class AppComponent {
   title = 'bookmonkey-clientÖ';
 
-  book = {
+  book: IBook = {
     title: 'How to win friends',
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
