@@ -12,3 +12,12 @@
     (detailClick)="navigate($event)"
   ></app-book-card>
 }
+@for (book of transform(books, searchString); track book.title) {
+  @if ($first) {
+    <h1>{{ "Books" | uppercase }}</h1>
+  }
+  <app-book-card
+    [content]="book"
+    (detailClick)="navigate($event)"
+  ></app-book-card>
+}

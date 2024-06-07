@@ -24,6 +24,17 @@ export class AppComponent {
 
   searchString = '';
 
+  transform(books: IBook[], searchTerm: string): IBook[] {
+    console.log('methode', searchTerm);
+    return books.filter((book) =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }
+
+  constructor() {
+    setInterval(() => (this.searchString = 'how'), 1500);
+  }
+
   books: IBook[] = [
     {
       title: 'How to win friends',
