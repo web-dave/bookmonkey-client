@@ -1,6 +1,6 @@
 <app-search [(searchString)]="searchString" />
 
-@for (book of books | bookFilter: searchString; track book.title) {
+@for (book of books | bookFilter: searchString; track $index) {
   @if ($first) {
     <h1>{{ "Books" | uppercase }}</h1>
   }
