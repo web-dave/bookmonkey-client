@@ -1,5 +1,8 @@
-<input type="text" (input)="setSearchString($event)" />
-<input type="text" #searchInput (input)="searchString = searchInput.value" />
+<!-- <input type="text" (input)="setSearchString($event)" />
+<input type="text" #searchInput (input)="searchString = searchInput.value" /> -->
+
+<app-search [(searchString)]="searchString" />
+
 @for (book of books | bookFilter: searchString; track book.title) {
   @if ($first) {
     <h1>Books</h1>

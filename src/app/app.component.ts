@@ -4,11 +4,12 @@ import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './book.interface';
 import { DatePipe, JsonPipe } from '@angular/common';
 import { BookFilterPipe } from './book-filter.pipe';
+import { SearchComponent } from './search/search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BookCardComponent, BookFilterPipe],
+  imports: [RouterOutlet, BookCardComponent, BookFilterPipe, SearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -16,10 +17,6 @@ export class AppComponent {
   title = 'bookmonkey-clientÖ';
 
   searchString = '';
-
-  setSearchString(event: Event) {
-    this.searchString = (event.target as HTMLInputElement).value;
-  }
 
   books: IBook[] = [
     {
