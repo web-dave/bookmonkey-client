@@ -5,7 +5,7 @@
 
 @for (book of books | bookFilter: searchString; track book.title) {
   @if ($first) {
-    <h1>Books</h1>
+    <h1>{{ "Books" | uppercase }}</h1>
   }
   <app-book-card
     [content]="book"
