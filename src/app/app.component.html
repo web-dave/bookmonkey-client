@@ -1,8 +1,6 @@
-{{ "06.06.2024" | date: "MM.DD/yy" }}
-
-<pre>{{ books | json }}</pre>
-
-@for (book of books; track book.title) {
+<input type="text" (input)="setSearchString($event)" />
+<input type="text" #searchInput (input)="searchString = searchInput.value" />
+@for (book of books | bookFilter: searchString; track book.title) {
   @if ($first) {
     <h1>Books</h1>
   }
