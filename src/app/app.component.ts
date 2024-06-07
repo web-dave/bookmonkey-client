@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './book.interface';
+import { DatePipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BookCardComponent],
+  imports: [RouterOutlet, BookCardComponent, DatePipe, JsonPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

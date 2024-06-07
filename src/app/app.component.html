@@ -1,3 +1,7 @@
+{{ "06.06.2024" | date: "MM.DD/yy" }}
+
+<pre>{{ books | json }}</pre>
+
 @for (book of books; track book.title) {
   @if ($first) {
     <h1>Books</h1>
