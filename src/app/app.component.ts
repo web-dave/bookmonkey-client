@@ -1,59 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BookCardComponent } from './book-card/book-card.component';
-import { IBook } from './book.interface';
-import { DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
-import { BookFilterPipe } from './book-filter.pipe';
-import { SearchComponent } from './search/search.component';
+import { BookComponent } from './book/book.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    BookCardComponent,
-    BookFilterPipe,
-    SearchComponent,
-    UpperCasePipe,
-  ],
+  imports: [RouterOutlet, BookComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'bookmonkey-clientÖ';
-
-  searchString = '';
-
-  transform(books: IBook[], searchTerm: string): IBook[] {
-    console.log('methode', searchTerm);
-    return books.filter((book) =>
-      book.title.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-  }
-
-  constructor() {
-    setInterval(() => (this.searchString = 'how'), 1500);
-  }
-
-  books: IBook[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
-
-  navigate(data: IBook) {
-    console.log(data);
-  }
-}
+export class AppComponent {}
