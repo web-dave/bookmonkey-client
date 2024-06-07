@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookFilterPipe } from './book-filter.pipe';
 import { IBook } from './book.interface';
 import { SearchComponent } from './search/search.component';
 import { UpperCasePipe } from '@angular/common';
+import { BookService } from './book.service';
 
 @Component({
   selector: 'app-book',
@@ -15,23 +16,23 @@ import { UpperCasePipe } from '@angular/common';
 export class BookComponent {
   searchString = '';
 
-  books: IBook[] = [
-    {
-      title: 'How to win friends',
-      author: 'Dale Carnegie',
-      abstract: 'How to Win Friends and Influence ...',
-    },
-    {
-      title: 'The Willpower Instinct: How Self-Control Works ...',
-      author: 'Kelly McGonigal',
-      abstract: 'Based on Stanford University ...',
-    },
-    {
-      author: 'Simon Sinek',
-      title: 'Start with WHY',
-      abstract: "START WITH WHY shows that the leaders who've ...",
-    },
-  ];
+  service = inject(BookService);
+
+  books: IBook[] = [];
+
+  constructor() {
+    this.service.getAll().subscribe({
+      next: (data) => (this.books = data),
+    });
+
+    // this.service.getAll().subscribe({
+    //   next: (data) => (this.books = data),
+    //   error: e => console.error(e)
+    // });
+    // this.service.getAll().subscribe(
+    //   (data) => (this.books = data)
+    // );
+  }
 
   navigate(data: IBook) {
     console.log(data);
