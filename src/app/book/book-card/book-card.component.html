@@ -1,14 +1,10 @@
 <ng-content></ng-content>
-@if (content) {
-  <h3>{{ content.title }}</h3>
-  <h4>{{ content.author }}</h4>
+<h3>{{ content().title }}</h3>
+<h4>{{ content().author }}</h4>
 
-  <div (click)="foo($event)">
-    <a href="#" (click)="handleDetailClick($event)">Details</a>
-  </div>
-  <p [class.achtung]="isAchtung">
-    {{ content.abstract }}
-  </p>
-} @else {
-  NO DATA
-}
+<div (click)="foo($event)">
+  <a href="#" (click)="handleDetailClick($event)">Details</a>
+</div>
+<p [class.achtung]="isAchtung">
+  {{ content().abstract }}
+</p>

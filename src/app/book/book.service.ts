@@ -14,4 +14,9 @@ export class BookService {
       .get<IBook[]>('http://localhost:4730/books')
       .pipe(shareReplay());
   }
+  getOne(isbn: string): Observable<IBook> {
+    return this.http
+      .get<IBook>('http://localhost:4730/books/' + isbn)
+      .pipe(shareReplay());
+  }
 }

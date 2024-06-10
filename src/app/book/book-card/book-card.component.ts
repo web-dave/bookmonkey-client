@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  input,
+  output,
+} from '@angular/core';
 import { IBook } from '../book.interface';
 
 @Component({
@@ -9,13 +16,16 @@ import { IBook } from '../book.interface';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
-  @Input({ required: true }) content?: IBook;
-  @Output() detailClick = new EventEmitter<IBook>();
+  // @Input({ required: true }) content?: IBook;
+  content = input.required<IBook>();
+
+  // @Output() detailClick_ = new EventEmitter<IBook>();
+  detailClick = output<IBook>();
 
   handleDetailClick(event: MouseEvent | Event) {
     event.preventDefault();
-    console.log('a', event, this.content);
-    this.detailClick.emit(this.content);
+    console.log('a', event, this.content());
+    this.detailClick.emit(this.content());
     event.stopPropagation();
   }
   foo(evt: MouseEvent) {
