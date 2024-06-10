@@ -1,6 +1,15 @@
 <app-search [(searchString)]="searchString" />
-
-@for (book of books | bookFilter: searchString; track $index) {
+@if (books$ | async; as books) {
+  @for (book of books | bookFilter: searchString; track $index) {
+    @if ($first) {
+      <h1>{{ "Books" | uppercase }}</h1>
+    }
+    <app-book-card [content]="book" (detailClick)="navigate($event)">
+      <h5>Book:{{ $index }}</h5></app-book-card
+    >
+  }
+}
+@for (book of books$ | async | bookFilter: searchString; track $index) {
   @if ($first) {
     <h1>{{ "Books" | uppercase }}</h1>
   }
