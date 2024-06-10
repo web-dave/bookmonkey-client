@@ -1,1 +1,5 @@
-<app-book />
+<button (click)="show = !show">close</button>
+
+@if (show) {
+  <app-book />
+}

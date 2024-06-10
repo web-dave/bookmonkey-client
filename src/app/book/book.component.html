@@ -4,8 +4,7 @@
   @if ($first) {
     <h1>{{ "Books" | uppercase }}</h1>
   }
-  <app-book-card
-    [content]="book"
-    (detailClick)="navigate($event)"
-  ></app-book-card>
+  <app-book-card [content]="book" (detailClick)="navigate($event)">
+    <h5>Book:{{ $index }}</h5></app-book-card
+  >
 }
