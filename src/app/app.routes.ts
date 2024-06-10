@@ -11,6 +11,7 @@ export const routes: Routes = [
   {
     path: 'books',
     component: BookComponent,
+    providers: [],
   },
   {
     path: 'about',
