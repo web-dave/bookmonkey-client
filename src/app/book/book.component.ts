@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { BookService } from './book.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -17,6 +18,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class BookComponent {
   searchString = '';
 
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+
   booksS = toSignal(inject(BookService).getAll(), {
     initialValue: [],
   });
@@ -24,6 +28,9 @@ export class BookComponent {
   bookCount = computed(() => this.booksS().length);
 
   navigate(data: IBook) {
-    console.log(data);
+    console.log(this.route);
+    this.router.navigate(['details', data.isbn], {
+      relativeTo: this.route,
+    });
   }
 }
