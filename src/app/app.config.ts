@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
+  withDebugTracing,
   withHashLocation,
 } from '@angular/router';
 
@@ -12,6 +13,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding(), withDebugTracing()), //
   ],
 };
