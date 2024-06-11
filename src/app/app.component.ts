@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BookComponent } from './book/book.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
