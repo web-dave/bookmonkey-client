@@ -1,9 +1,18 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Injector,
+  OnInit,
+  Signal,
+  effect,
+  inject,
+  input,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { NEVER, Observable } from 'rxjs';
 import { IBook } from '../book.interface';
 import { BookService } from '../book.service';
 import { AsyncPipe, JsonPipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book-details',
@@ -12,11 +21,14 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
 })
-export class BookDetailsComponent implements OnInit {
-  route = inject(ActivatedRoute);
+export class BookDetailsComponent {
+  isbn = input.required<string>();
+  book$: Observable<IBook> = NEVER;
   service = inject(BookService);
-  book$!: Observable<IBook>;
-  ngOnInit(): void {
-    this.book$ = this.service.getOne(this.route.snapshot.params['isbn']);
-  }
+  injector = inject(Injector);
+  effectRef = effect(() => {
+    if (this.isbn()) {
+      this.book$ = this.service.getOne(this.isbn());
+    }
+  });
 }
