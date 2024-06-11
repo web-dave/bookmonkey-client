@@ -1,4 +1,5 @@
 <app-search [(searchString)]="searchString" />
+<a routerLink="new">+</a>
 
 @for (book of booksS() | bookFilter: searchString; track $index) {
   @if ($first) {
