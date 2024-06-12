@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 describe('FooComponent', () => {
   let component: FooComponent;
@@ -39,9 +39,9 @@ describe('FooComponent', () => {
   // });
 
   it('should be OK', async () => {
-    const data = await firstValueFrom(service.validateIsbn('123456789'));
+    const data = lastValueFrom(service.validateIsbn('123456789'));
     httpMock.expectOne('http://localhost:4730/books/123456789').flush(null);
-    expectAsync(data).toBeResolvedTo(null);
+    await expectAsync(data).toBeResolvedTo(null);
   });
 
   it('should be OK', (done) => {
