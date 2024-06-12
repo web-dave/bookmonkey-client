@@ -10,6 +10,7 @@ import {
 import { BookService } from '../book.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { authorValidator } from '../validators/author.validator';
+import { isbnValidator } from '../validators/isbn.validator';
 
 interface IBookForm {
   isbn: FormControl<string>;
@@ -35,7 +36,11 @@ export class BookNewComponent implements OnInit {
   dref = inject(DestroyRef);
   formBuilder = inject(NonNullableFormBuilder);
   newBookForm: FormGroup<IBookForm> = this.formBuilder.group({
-    isbn: ['', [Validators.required, Validators.minLength(3)]],
+    isbn: [
+      '',
+      [Validators.required, Validators.minLength(3)],
+      [isbnValidator()],
+    ],
     author: ['', [Validators.required, authorValidator]],
     subtitle: [''],
     title: ['How to ...'],
