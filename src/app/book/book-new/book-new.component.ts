@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, Injector, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { BookService } from '../book.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { authorValidator } from '../validators/author.validator';
 
 interface IBookForm {
   isbn: FormControl<string>;
@@ -14,6 +17,10 @@ interface IBookForm {
   subtitle: FormControl<string>;
   title: FormControl<string>;
   abstract: FormControl<string>;
+  numPages: FormControl<number>;
+  publisher: FormControl<string>;
+  price: FormControl<string>;
+  cover: FormControl<string>;
 }
 
 @Component({
@@ -24,13 +31,19 @@ interface IBookForm {
   styleUrl: './book-new.component.scss',
 })
 export class BookNewComponent implements OnInit {
+  service = inject(BookService);
+  dref = inject(DestroyRef);
   formBuilder = inject(NonNullableFormBuilder);
   newBookForm: FormGroup<IBookForm> = this.formBuilder.group({
     isbn: ['', [Validators.required, Validators.minLength(3)]],
-    author: ['', [Validators.required]],
+    author: ['', [Validators.required, authorValidator]],
     subtitle: [''],
     title: ['How to ...'],
     abstract: [''],
+    numPages: 0,
+    publisher: '',
+    price: '',
+    cover: 'https://picsum.photos/200/300',
   });
 
   ngOnInit(): void {
@@ -39,7 +52,10 @@ export class BookNewComponent implements OnInit {
     // this.newBookForm.controls.author.disable();
   }
 
-  send() {
-    console.log(this.newBookForm.value);
+  send(e: any) {
+    this.service
+      .create(this.newBookForm.getRawValue())
+      .pipe(takeUntilDestroyed(this.dref))
+      .subscribe();
   }
 }

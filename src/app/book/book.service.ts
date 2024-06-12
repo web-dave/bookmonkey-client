@@ -19,4 +19,7 @@ export class BookService {
       .get<IBook>('http://localhost:4730/books/' + isbn)
       .pipe(shareReplay());
   }
+  create(book: IBook) {
+    return this.http.post<IBook>('http://localhost:4730/books', book);
+  }
 }
