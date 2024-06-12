@@ -3,15 +3,17 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 interface IBookForm {
-  isbn: FormControl<string | null>;
-  author: FormControl<string | null>;
-  subtitle: FormControl<string | null>;
-  title: FormControl<string | null>;
-  abstract: FormControl<string | null>;
+  isbn: FormControl<string>;
+  author: FormControl<string>;
+  subtitle: FormControl<string>;
+  title: FormControl<string>;
+  abstract: FormControl<string>;
 }
 
 @Component({
@@ -22,10 +24,10 @@ interface IBookForm {
   styleUrl: './book-new.component.scss',
 })
 export class BookNewComponent implements OnInit {
-  formBuilder = inject(FormBuilder);
+  formBuilder = inject(NonNullableFormBuilder);
   newBookForm: FormGroup<IBookForm> = this.formBuilder.group({
-    isbn: [''],
-    author: [''],
+    isbn: ['', [Validators.required, Validators.minLength(3)]],
+    author: ['', [Validators.required]],
     subtitle: [''],
     title: ['How to ...'],
     abstract: [''],
@@ -34,7 +36,7 @@ export class BookNewComponent implements OnInit {
   ngOnInit(): void {
     this.newBookForm.value;
     this.newBookForm.getRawValue();
-    this.newBookForm.controls.author.disable();
+    // this.newBookForm.controls.author.disable();
   }
 
   send() {
