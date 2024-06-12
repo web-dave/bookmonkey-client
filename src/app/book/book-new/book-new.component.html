@@ -3,6 +3,9 @@
 <form [formGroup]="newBookForm" (ngSubmit)="send($event)">
   <label for="isbn">ISBN:</label><br />
   <input type="text" name="isbn" formControlName="isbn" />
+  @if (newBookForm.get("isbn")?.hasError("isbnError")) {
+    <small> {{ newBookForm.get("isbn")?.errors?.["isbnError"] }} </small>
+  }
   @if (
     newBookForm.get("isbn")?.touched &&
     newBookForm.get("isbn")?.hasError("required")
