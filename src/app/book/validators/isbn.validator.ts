@@ -22,16 +22,7 @@ export const isbnValidator = (): AsyncValidatorFn => {
     const isbn: string = control.value;
     console.log(isbn);
 
-    return timer(1000).pipe(
-      switchMap(() =>
-        service.getOne(isbn).pipe(
-          map((book) => ({
-            isbnError: `ISBN wird schon verwendet, und zwar fuer "${book.title}".`,
-          })),
-          catchError(() => of(null)),
-        ),
-      ),
-    );
+    return timer(1000).pipe(switchMap(() => service.validateIsbn(isbn)));
 
     //   return service.getOne(isbn).pipe(
     //     map((book) => ({

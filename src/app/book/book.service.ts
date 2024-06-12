@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { IBook } from './book.interface';
-import { Observable, share, shareReplay } from 'rxjs';
+import { Observable, catchError, map, of, share, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -21,5 +21,13 @@ export class BookService {
   }
   create(book: IBook) {
     return this.http.post<IBook>('http://localhost:4730/books', book);
+  }
+  validateIsbn(isbn: string) {
+    return this.getOne(isbn).pipe(
+      map((book) => ({
+        isbnError: `ISBN wird schon verwendet, und zwar fuer "${book.title}".`,
+      })),
+      catchError(() => of(null)),
+    );
   }
 }
