@@ -1,0 +1,6 @@
+<input type="text" #searchInput (input)="setSearchTerm(searchInput.value)">
+@for(book of books |bookFilter:searchTerm; track book.title){
+<app-book-card [content]="book" (detailClicked)="goToDetails($event)" />
+}@empty {
+:(
+}
