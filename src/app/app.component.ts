@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './models/book.interface';
+import { BookFilterPipe } from './book-filter.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BookCardComponent],
+  imports: [BookCardComponent, BookFilterPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  searchTerm = '';
   books: IBook[] = [
     {
       title: 'How to win friends',
@@ -30,5 +32,9 @@ export class AppComponent {
 
   goToDetails(book: IBook) {
     console.log(book);
+  }
+
+  setSearchTerm(search: string) {
+    this.searchTerm = search;
   }
 }
