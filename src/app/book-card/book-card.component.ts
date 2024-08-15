@@ -17,7 +17,7 @@ export class BookCardComponent {
     color: 'lime',
   };
 
-  handleClick(e: MouseEvent) {
-    console.log(e);
+  handleClick(e: MouseEvent, target: string) {
+    console.log(target);
   }
 }
