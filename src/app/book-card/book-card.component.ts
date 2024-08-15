@@ -9,7 +9,7 @@ import { IBook } from '../models/book.interface';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
-  @Input({ required: true }) content!: IBook;
+  @Input({ required: true }) content?: IBook;
   @Output() detailClicked = new EventEmitter<IBook>();
   text = 'moin';
   class = 'info';
