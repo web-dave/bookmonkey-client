@@ -15,4 +15,8 @@ export class AppComponent {
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+
+  goToDetails(book: IBook) {
+    console.log(book);
+  }
 }
