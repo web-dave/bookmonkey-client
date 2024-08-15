@@ -16,4 +16,8 @@ export class BookCardComponent {
   customStyle = {
     color: 'lime',
   };
+
+  handleClick(e: MouseEvent) {
+    console.log(e);
+  }
 }
