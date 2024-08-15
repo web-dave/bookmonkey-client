@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IBook } from '../models/book.interface';
 
 @Component({
   selector: 'app-book-card',
@@ -8,8 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
-  // ToDo: get rid of any
-  @Input() content: any;
+  @Input({ required: true }) content!: IBook;
   text = 'moin';
   class = 'info';
 
