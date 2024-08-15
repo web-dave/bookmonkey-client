@@ -9,5 +9,9 @@ import { BookCardComponent } from './book-card/book-card.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'bookmonkey-client!!!!';
+  book = {
+    title: 'How to win friends',
+    author: 'Dale Carnegie',
+    abstract: 'In this book ...',
+  };
 }
