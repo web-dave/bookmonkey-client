@@ -13,8 +13,12 @@ import { BookApiService } from './book-api.service';
 })
 export class BookComponent {
   searchTerm = '';
-  // service = inject(BookApiService);
-  books: IBook[] = inject(BookApiService).getAll();
+  service = inject(BookApiService);
+  books: IBook[] = [];
+
+  sub = this.service
+    .getAll()
+    .subscribe({ next: (data) => (this.books = data) });
 
   goToDetails(book: IBook) {
     console.log(book);
