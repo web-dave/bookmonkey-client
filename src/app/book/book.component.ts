@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookFilterPipe } from './book-filter.pipe';
 import { IBook } from './models/book.interface';
 import { BookApiService } from './book-api.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book',
@@ -11,14 +12,11 @@ import { BookApiService } from './book-api.service';
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
   searchTerm = '';
   service = inject(BookApiService);
+  dRef = inject(DestroyRef);
   books: IBook[] = [];
-
-  sub = this.service
-    .getAll()
-    .subscribe({ next: (data) => (this.books = data) });
 
   goToDetails(book: IBook) {
     console.log(book);
@@ -26,5 +24,12 @@ export class BookComponent {
 
   setSearchTerm(search: string) {
     this.searchTerm = search;
+  }
+
+  ngOnInit(): void {
+    this.service
+      .getAll()
+      .pipe(takeUntilDestroyed(this.dRef))
+      .subscribe({ next: (data) => (this.books = data) });
   }
 }

@@ -1,1 +1,6 @@
-<app-book />
+<button (click)="show = !show">show/hide</button>
+@if(show){
+<app-book>
+    <h1>My List</h1>
+</app-book>
+}
