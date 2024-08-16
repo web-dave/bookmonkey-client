@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IBook } from './models/book.interface';
-import { Observable, of } from 'rxjs';
+import { filter, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,9 +22,17 @@ export class BookApiService {
       title: 'Start with WHY',
       abstract: "START WITH WHY shows that the leaders who've ...",
     },
+    {
+      author: 'Hurz',
+      title: 'WHY Lamm',
+    },
   ];
 
   getAll(): Observable<IBook[]> {
-    return of(this.books);
+    return of(this.books).pipe(
+      map((listOfBooks) =>
+        listOfBooks.filter((book) => book.abstract !== undefined),
+      ),
+    );
   }
 }
