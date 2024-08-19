@@ -1,8 +1,8 @@
 <ng-content></ng-content>
 <input type="text" #searchInput (input)="setSearchTerm(searchInput.value)">
-@for(book of books |bookFilter:searchTerm; track book.isbn){
+@for(book of books$ | async |bookFilter:searchTerm; track book.isbn){
 @if($first){
-{{$count}}/{{books.length}}
+{{$count}}/{{(books$ | async)?.length}}
 }
 <app-book-card [content]="book" (detailClicked)="goToDetails($event)" />
 }@empty {

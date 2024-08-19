@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IBook } from './models/book.interface';
-import { Observable, tap } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -11,8 +11,9 @@ export class BookApiService {
   private url = 'http://localhost:4730';
 
   getAll(): Observable<IBook[]> {
-    return this.http
-      .get<IBook[]>(`${this.url}/books`)
-      .pipe(tap((data) => console.log(data)));
+    return this.http.get<IBook[]>(`${this.url}/books`).pipe(
+      shareReplay(),
+      tap((data) => console.log(data)),
+    );
   }
 }
