@@ -8,8 +8,6 @@ import { Component, model } from '@angular/core';
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
-  // searchTerm = input.required<string>();
-  // searchTerm2 = output<string>();
   searchTerm = model<string>();
 
   setSearchTerm(search: string) {
