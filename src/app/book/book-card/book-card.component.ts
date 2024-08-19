@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, output, Output } from '@angular/core';
 import { IBook } from '../models/book.interface';
 
 @Component({
@@ -9,8 +9,10 @@ import { IBook } from '../models/book.interface';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
-  @Input({ required: true }) content?: IBook;
-  @Output() detailClicked = new EventEmitter<IBook>();
+  content = input.required<IBook>();
+  // @Input({ required: true }) content?: IBook;
+  detailClicked = output<IBook>();
+  // @Output() detailClicked = new EventEmitter<IBook>();
   text = 'moin';
   class = 'info';
 
@@ -20,6 +22,6 @@ export class BookCardComponent {
 
   handleClick(e: MouseEvent, target: string) {
     console.log(target);
-    this.detailClicked.emit(this.content);
+    this.detailClicked.emit(this.content());
   }
 }

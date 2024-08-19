@@ -1,8 +1,8 @@
-@if(content){
-<h3>{{content.title}}</h3>
-<h4 [style]="customStyle">{{content.author}}</h4>
+@if(content().title){
+<h3>{{content().title}}</h3>
+<h4 [style]="customStyle">{{content().author}}</h4>
 <button (click)="handleClick($event, 'b')">details</button>
-<p [class]="class">{{content.abstract}}</p>
+<p [class]="class">{{content().abstract}}</p>
 } @else {
 wait for it...
 }
