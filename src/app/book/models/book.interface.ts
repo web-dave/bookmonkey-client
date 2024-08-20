@@ -3,4 +3,9 @@ export interface IBook {
   author: string;
   abstract: string;
   isbn: string;
+  subtitle: string;
+  numPages: number;
+  publisher: string;
+  price: string;
+  cover: string;
 }

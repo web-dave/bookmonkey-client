@@ -16,4 +16,8 @@ export class BookApiService {
       tap((data) => console.log(data)),
     );
   }
+
+  getBookByIsbn(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>(`${this.url}/books/${isbn}`);
+  }
 }

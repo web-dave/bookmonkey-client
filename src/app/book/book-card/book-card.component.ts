@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { IBook } from '../models/book.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book-card',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss',
 })
