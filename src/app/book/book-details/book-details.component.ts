@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IBook } from '../models/book.interface';
 import { BookApiService } from '../book-api.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -8,7 +8,7 @@ import { map, switchMap, tap } from 'rxjs';
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
 })
