@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { BookComponent } from './book/book.component';
-import { BookDetailsComponent } from './book/book-details/book-details.component';
 
 export const appRoutes: Routes = [
   {
@@ -15,10 +13,6 @@ export const appRoutes: Routes = [
   },
   {
     path: 'books',
-    component: BookComponent,
-  },
-  {
-    path: 'books/details/:isbn',
-    component: BookDetailsComponent,
+    loadChildren: () => import('./book/book.routes'),
   },
 ];
