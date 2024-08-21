@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book-new',
@@ -10,16 +10,18 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class BookNewComponent {
   newBookForm = inject(FormBuilder).group({
-    title: [''],
+    title: ['', [Validators.required]],
     author: [''],
-    abstract: [''],
-    isbn: [''],
+    abstract: ['', [Validators.required]],
+    isbn: ['', [Validators.required, Validators.minLength(7)]],
     subtitle: [''],
     numPages: [0],
     publisher: [''],
     price: [''],
     cover: [''],
   });
+
+  formfields = Object.keys(this.newBookForm.controls);
 
   saveBook() {
     console.log(this.newBookForm.value);

@@ -1,12 +1,28 @@
 <h3>Create New Book</h3>
 <form [formGroup]="newBookForm" (ngSubmit)="saveBook()">
-    <label for="title">Title</label>:<input id="title" formControlName="title"><br>
-    <label for="author">Author</label>:<input id="author" formControlName="author"><br>
-    <label for="abstract">Abstract</label>:<input id="abstract" formControlName="abstract"><br>
+    <!-- <label for="author">Author</label>:<input id="author" formControlName="author"><br>
+    <label for="title">Title</label>:<input id="title" formControlName="title">
+    @if(newBookForm.get('title')?.dirty && newBookForm.get('title')?.hasError('required')){
+    <small>🦄</small>
+    }
+    <br> -->
+    @for(ctrl of formfields; track $index){
+    <label [for]="ctrl">{{ctrl}}:</label><input [id]="ctrl" [formControlName]="ctrl">
+    @if(newBookForm.get(ctrl)?.dirty && newBookForm.get(ctrl)?.hasError('required')){
+    <small>🦄</small>
+    }
+    @if(newBookForm.get(ctrl)?.dirty && newBookForm.get(ctrl)?.hasError('minlength')){
+    <small>needed length is {{newBookForm.get(ctrl)?.errors?.['minlength'].requiredLength}} but you set only
+        {{newBookForm.get(ctrl)?.errors?.['minlength'].actualLength}}</small>
+    }
+    <br>
+
+    }
+    <!-- <label for="abstract">Abstract</label>:<input id="abstract" formControlName="abstract"><br>
     <label for="isbn">ISBN</label>:<input id="isbn" formControlName="isbn"><br>
     <label for="numPages">NumPages</label>:<input id="numPages" formControlName="numPages"><br>
     <label for="publisher">Publisher</label>:<input id="publisher" formControlName="publisher"><br>
-    <label for="price">Price</label>:<input id="price" formControlName="price"><br>
+    <label for="price">Price</label>:<input id="price" formControlName="price"><br> --> -->
 
     <input type="submit" value="Save">
 </form>
