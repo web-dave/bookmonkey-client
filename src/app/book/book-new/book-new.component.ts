@@ -1,5 +1,36 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { catchError, map, Observable, of } from 'rxjs';
+import { BookApiService } from '../book-api.service';
+
+const isbn = (): AsyncValidatorFn => {
+  const service = inject(BookApiService);
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.getBookByIsbn(control.value as string).pipe(
+      map(() => ({ isbn: 'Isbn is already taken' })),
+      catchError(() => of(null)),
+    );
+  };
+};
+
+const authorValidator: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
+  console.log(control.value);
+  return (control.value as string).includes('%')
+    ? {
+        author: "There is a %! Don't do this!",
+      }
+    : null;
+};
 
 @Component({
   selector: 'app-book-new',
@@ -11,9 +42,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class BookNewComponent {
   newBookForm = inject(FormBuilder).group({
     title: ['', [Validators.required]],
-    author: [''],
+    author: ['', [authorValidator]],
     abstract: ['', [Validators.required]],
-    isbn: ['', [Validators.required, Validators.minLength(7)]],
+    isbn: ['', [Validators.required, Validators.minLength(7)], [isbn()]],
     subtitle: [''],
     numPages: [0],
     publisher: [''],
