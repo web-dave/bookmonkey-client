@@ -6,12 +6,18 @@ import { BookApiService } from './book-api.service';
 import { AsyncPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SearchComponent } from './search/search.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BookCardComponent, BookFilterPipe, AsyncPipe, SearchComponent],
+  imports: [
+    BookCardComponent,
+    BookFilterPipe,
+    AsyncPipe,
+    SearchComponent,
+    RouterLink,
+  ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })

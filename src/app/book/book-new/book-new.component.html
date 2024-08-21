@@ -1,0 +1,12 @@
+<h3>Create New Book</h3>
+<form [formGroup]="newBookForm" (ngSubmit)="saveBook()">
+    <label for="title">Title</label>:<input id="title" formControlName="title"><br>
+    <label for="author">Author</label>:<input id="author" formControlName="author"><br>
+    <label for="abstract">Abstract</label>:<input id="abstract" formControlName="abstract"><br>
+    <label for="isbn">ISBN</label>:<input id="isbn" formControlName="isbn"><br>
+    <label for="numPages">NumPages</label>:<input id="numPages" formControlName="numPages"><br>
+    <label for="publisher">Publisher</label>:<input id="publisher" formControlName="publisher"><br>
+    <label for="price">Price</label>:<input id="price" formControlName="price"><br>
+
+    <input type="submit" value="Save">
+</form>
