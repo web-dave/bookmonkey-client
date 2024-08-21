@@ -1,5 +1,5 @@
-import { Component, DestroyRef, inject, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, DestroyRef, effect, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IBook } from '../models/book.interface';
 import { BookApiService } from '../book-api.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -13,15 +13,18 @@ import { tap } from 'rxjs';
   styleUrl: './book-details.component.scss',
 })
 export class BookDetailsComponent {
-  @Input() set isbn(isbn: string) {
+  isbn = input.required<string>();
+
+  eRef = effect(() => {
     this.service
-      .getBookByIsbn(isbn)
+      .getBookByIsbn(this.isbn())
       .pipe(
         takeUntilDestroyed(this.dRef),
         tap({ error: () => (this.loadingFailed = true) }),
       )
       .subscribe((data) => (this.book = data));
-  }
+  });
+
   service = inject(BookApiService);
   dRef = inject(DestroyRef);
 
