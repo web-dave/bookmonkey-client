@@ -3,6 +3,7 @@ import {
   AbstractControl,
   AsyncValidatorFn,
   FormBuilder,
+  FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
@@ -10,6 +11,7 @@ import {
 } from '@angular/forms';
 import { catchError, map, Observable, of } from 'rxjs';
 import { BookApiService } from '../book-api.service';
+import { IBook, IBookForm } from '../models/book.interface';
 
 const isbn = (): AsyncValidatorFn => {
   const service = inject(BookApiService);
@@ -40,7 +42,8 @@ const authorValidator: ValidatorFn = (
   styleUrl: './book-new.component.scss',
 })
 export class BookNewComponent {
-  newBookForm = inject(FormBuilder).group({
+  private service = inject(BookApiService);
+  newBookForm: FormGroup<IBookForm> = inject(FormBuilder).group({
     title: ['', [Validators.required]],
     author: ['', [authorValidator]],
     abstract: ['', [Validators.required]],
@@ -56,5 +59,6 @@ export class BookNewComponent {
 
   saveBook() {
     console.log(this.newBookForm.value);
+    this.service.create(this.newBookForm.getRawValue() as IBook).subscribe();
   }
 }

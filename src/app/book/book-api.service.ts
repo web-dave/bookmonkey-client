@@ -20,4 +20,8 @@ export class BookApiService {
   getBookByIsbn(isbn: string): Observable<IBook> {
     return this.http.get<IBook>(`${this.url}/books/${isbn}`);
   }
+
+  create(book: IBook): Observable<IBook> {
+    return this.http.post<IBook>(`${this.url}/books`, book);
+  }
 }
