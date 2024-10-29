@@ -17,4 +17,8 @@ export class BookCardComponent {
   handleClick(e: MouseEvent) {
     console.log(e);
   }
+
+  foo(e: HTMLInputElement) {
+    console.log(e.value);
+  }
 }
