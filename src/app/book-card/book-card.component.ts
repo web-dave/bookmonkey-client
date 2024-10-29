@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-book-card',
@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
+  // ToDo No front!
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() content: any;
   customStyle = {
     color: 'lime',
   };
-
-  abstract = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam incidunt, optio
-  qui doloremque velit pariatu...`;
 }

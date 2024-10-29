@@ -9,5 +9,9 @@ import { BookCardComponent } from './book-card/book-card.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'IHK-GFi';
+  book = {
+    title: 'Moby Dick',
+    author: 'Herman Melville',
+    abstract: 'Ein weisser Wal....',
+  };
 }
