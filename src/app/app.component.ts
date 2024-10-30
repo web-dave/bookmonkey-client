@@ -15,4 +15,8 @@ export class AppComponent {
     author: 'Herman Melville',
     abstract: 'Ein weisser Wal....',
   };
+
+  goTo(e: IBook) {
+    console.table(e);
+  }
 }

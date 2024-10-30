@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBook } from '../models/book.interface';
 
 @Component({
@@ -10,12 +10,14 @@ import { IBook } from '../models/book.interface';
 })
 export class BookCardComponent {
   @Input({ required: true }) content!: IBook;
+  @Output() detailClicked = new EventEmitter<IBook>();
   customStyle = {
     color: 'lime',
   };
 
   handleClick(e: MouseEvent) {
     console.log(e);
+    this.detailClicked.emit(this.content);
   }
 
   foo(e: HTMLInputElement) {
