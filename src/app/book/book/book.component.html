@@ -1,0 +1,4 @@
+<app-book-filter [(filter)]="searchTerm" />
+@for (book of books | bookFilter: searchTerm; track book.title) {
+  <app-book-card [content]="book" (detailClicked)="goTo($event)" />
+}
