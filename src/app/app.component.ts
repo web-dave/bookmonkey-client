@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { BookCardComponent } from './book-card/book-card.component';
 import { IBook } from './models/book.interface';
+import { BookFilterPipe } from './book-filter.pipe';
+import { BookFilterComponent } from './book-filter/book-filter.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BookCardComponent],
+  imports: [BookCardComponent, BookFilterPipe, BookFilterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  searchTerm = '';
   books: IBook[] = [
     {
       title: 'How to win friends',
