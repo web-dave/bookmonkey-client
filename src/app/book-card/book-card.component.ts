@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  Sanitizer,
+} from '@angular/core';
 import { IBook } from '../models/book.interface';
 
 @Component({
@@ -15,6 +22,8 @@ export class BookCardComponent {
     color: 'lime',
   };
 
+  satitizer = inject(Sanitizer);
+
   handleClick(e: MouseEvent) {
     console.log(e);
     this.detailClicked.emit(this.content);
@@ -23,4 +32,6 @@ export class BookCardComponent {
   foo(e: HTMLInputElement) {
     console.log(e.value);
   }
+
+  text = 'Hallo <br> main';
 }

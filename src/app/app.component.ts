@@ -10,11 +10,23 @@ import { IBook } from './models/book.interface';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  book: IBook = {
-    title: 'Moby Dick',
-    author: 'Herman Melville',
-    abstract: 'Ein weisser Wal....',
-  };
+  books: IBook[] = [
+    {
+      title: 'How to win friends',
+      author: 'Dale Carnegie',
+      abstract: 'How to Win Friends and Influence ...',
+    },
+    {
+      title: 'The Willpower Instinct: How Self-Control Works ...',
+      author: 'Kelly McGonigal',
+      abstract: 'Based on Stanford University ...',
+    },
+    {
+      author: 'Simon Sinek',
+      title: 'Start with WHY',
+      abstract: "START WITH WHY shows that the leaders who've ...",
+    },
+  ];
 
   goTo(e: IBook) {
     console.table(e);
