@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IBook } from '../models/book.interface';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { BookFilterPipe } from '../book-filter.pipe';
 import { BookFilterComponent } from '../book-filter/book-filter.component';
 import { BookService } from '../book.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book',
@@ -12,16 +13,16 @@ import { BookService } from '../book.service';
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
   searchTerm = '';
-  // service = inject(BookService);
+  getBooks$ = inject(BookService).getAll().pipe(takeUntilDestroyed());
   books: IBook[] = [];
 
-  sub = inject(BookService)
-    .getAll()
-    .subscribe({
+  ngOnInit(): void {
+    this.getBooks$.subscribe({
       next: (data) => (this.books = data),
     });
+  }
 
   goTo(e: IBook) {
     console.table(e);
