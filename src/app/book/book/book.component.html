@@ -1,4 +1,4 @@
 <app-book-filter [(filter)]="searchTerm" />
-@for (book of books | bookFilter: searchTerm; track book.isbn) {
+@for (book of books$ | async | bookFilter: searchTerm; track book.isbn) {
   <app-book-card [content]="book" (detailClicked)="goTo($event)" />
 }
