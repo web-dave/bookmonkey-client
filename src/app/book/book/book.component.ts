@@ -15,7 +15,13 @@ import { BookService } from '../book.service';
 export class BookComponent {
   searchTerm = '';
   // service = inject(BookService);
-  books: IBook[] = inject(BookService).getAll();
+  books: IBook[] = [];
+
+  sub = inject(BookService)
+    .getAll()
+    .subscribe({
+      next: (data) => (this.books = data),
+    });
 
   goTo(e: IBook) {
     console.table(e);
