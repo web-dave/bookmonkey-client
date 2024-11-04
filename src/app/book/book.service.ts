@@ -10,6 +10,6 @@ export class BookService {
   private http = inject(HttpClient);
 
   getAll(): Observable<IBook[]> {
-    return this.http.get<IBook[]>('https://bookmonkey-api.webdave.de/books');
+    return this.http.get<IBook[]>('http://localhost:4730/books');
   }
 }
