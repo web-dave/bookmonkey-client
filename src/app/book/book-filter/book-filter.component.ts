@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  model,
+  output,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-book-filter',
@@ -10,6 +18,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BookFilterComponent {
   @Input() filter = '';
   @Output() filterChange = new EventEmitter<string>();
+
+  foo = input<string>();
+  bar = output<string>();
+
+  baz = model<string>();
 
   setFilter(filter: string) {
     this.filterChange.emit(filter);
