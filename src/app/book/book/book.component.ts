@@ -6,6 +6,7 @@ import { BookFilterComponent } from '../book-filter/book-filter.component';
 import { BookService } from '../book.service';
 import { AsyncPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -18,6 +19,8 @@ export class BookComponent {
   searchTerm = '';
   books = toSignal(inject(BookService).getAll(), { initialValue: [] });
   all = computed(() => this.books().length);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
   // books: IBook[] = [];
 
   // ngOnInit(): void {
@@ -28,5 +31,6 @@ export class BookComponent {
 
   goTo(e: IBook) {
     console.table(e);
+    this.router.navigate(['details', e.isbn], { relativeTo: this.route });
   }
 }
