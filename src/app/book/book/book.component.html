@@ -1,4 +1,10 @@
-<app-book-filter [(filter)]="searchTerm" />
-@for (book of books$ | async | bookFilter: searchTerm; track book.isbn) {
+<app-book-filter [(filter)]="searchTerm" />{{ all() }}
+<hr />
+@let filteredList = books() | bookFilter: searchTerm;
+@for (book of filteredList; track book.isbn) {
+  @if ($first) {
+    {{ $count }}/ {{ all() }}
+    <hr />
+  }
   <app-book-card [content]="book" (detailClicked)="goTo($event)" />
 }

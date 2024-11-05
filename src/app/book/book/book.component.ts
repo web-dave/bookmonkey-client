@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { IBook } from '../models/book.interface';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { BookFilterPipe } from '../book-filter.pipe';
 import { BookFilterComponent } from '../book-filter/book-filter.component';
 import { BookService } from '../book.service';
 import { AsyncPipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book',
@@ -15,7 +16,8 @@ import { AsyncPipe } from '@angular/common';
 })
 export class BookComponent {
   searchTerm = '';
-  books$ = inject(BookService).getAll();
+  books = toSignal(inject(BookService).getAll(), { initialValue: [] });
+  all = computed(() => this.books().length);
   // books: IBook[] = [];
 
   // ngOnInit(): void {

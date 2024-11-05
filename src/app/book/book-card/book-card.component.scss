@@ -1,8 +1,11 @@
 :host {
-  width: 300px;
+  width: 100%;
   height: auto;
   border: solid hotpink 2px;
+  background-color: #807f7f;
   padding: 5px;
   display: block;
   margin-top: 15px;
+  box-shadow: 5px 5px 5px;
+  border-radius: 3px;
 }

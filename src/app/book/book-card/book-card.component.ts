@@ -29,9 +29,9 @@ export class BookCardComponent {
     this.detailClicked.emit(this.content);
   }
 
-  foo(e: HTMLInputElement) {
-    console.log(e.value);
-  }
+  // foo(e: HTMLInputElement) {
+  //   console.log(e.value);
+  // }
 
-  text = 'Hallo <br> main';
+  // text = 'Hallo <br> main';
 }
