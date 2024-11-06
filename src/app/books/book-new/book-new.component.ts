@@ -1,9 +1,9 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-  FormBuilder,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -17,10 +17,10 @@ export class BookNewComponent {
   builder = inject(NonNullableFormBuilder);
 
   newBookForm = this.builder.group({
-    title: ['Das Buch', [], []],
+    title: ['Das Buch', [Validators.required], []],
     subtitle: ['', [], []],
-    isbn: ['', [], []],
-    abstract: ['', [], []],
+    isbn: ['', [Validators.required], []],
+    abstract: ['', [Validators.minLength(16)], []],
     numPages: [0, [], []],
     author: ['', [], []],
     publisher: ['', [], []],

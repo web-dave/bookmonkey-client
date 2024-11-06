@@ -5,6 +5,22 @@
   <input name="title" id="title" type="text" formControlName="title" /><br />
   <label for="isbn">isbn: </label>
   <input name="isbn" id="isbn" type="text" formControlName="isbn" /><br />
+  <label for="abstract">abstract: </label>
+  <input name="abstract" id="abstract" type="text" formControlName="abstract" />
+  @if (newBookForm.controls.abstract.hasError("minlength")) {
+    <span
+      >Du muss
+      {{
+        newBookForm.controls.abstract.errors?.["minlength"]?.requiredLength
+      }}
+      eingeben, aber du hast nur
+      {{
+        newBookForm.controls.abstract.errors?.["minlength"].actualLength
+      }}
+      zeichen eingegeben</span
+    >
+  }
+  <br />
 
   <button type="submit">Senden</button>
 </form>
