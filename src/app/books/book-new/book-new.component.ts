@@ -5,6 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { BookService } from '../book.service';
+import { IBook } from '../models/book.interface';
 
 @Component({
   selector: 'app-book-new',
@@ -15,6 +17,7 @@ import {
 })
 export class BookNewComponent {
   builder = inject(NonNullableFormBuilder);
+  service = inject(BookService);
 
   newBookForm = this.builder.group({
     title: ['Das Buch', [Validators.required], []],
@@ -38,5 +41,7 @@ export class BookNewComponent {
   save() {
     console.log(this.newBookForm.value); // ohne disabled keys
     console.log(this.newBookForm.getRawValue()); // mit allez
+
+    this.service.createOne(this.newBookForm.getRawValue() as IBook).subscribe();
   }
 }
