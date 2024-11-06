@@ -1,6 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { BookService } from '../book.service';
-import { ActivatedRoute } from '@angular/router';
 import { IBook } from '../models/book.interface';
 import { JsonPipe } from '@angular/common';
 
@@ -11,14 +10,18 @@ import { JsonPipe } from '@angular/common';
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent {
+  @Input({ required: true })
+  set isbn(data: string) {
+    this.service.getOne(data).subscribe((data) => this.book.set(data));
+  }
   service = inject(BookService); //.getOne(this.isbn);
-  route = inject(ActivatedRoute);
+  // route = inject(ActivatedRoute);
   book = signal<IBook | undefined>(undefined);
 
-  ngOnInit(): void {
-    this.service
-      .getOne(this.route.snapshot.params['isbn'])
-      .subscribe((data) => this.book.set(data));
-  }
+  // ngOnInit(): void {
+  //   this.service
+  //     .getOne(this.route.snapshot.params['isbn'])
+  //     .subscribe((data) => this.book.set(data));
+  // }
 }
