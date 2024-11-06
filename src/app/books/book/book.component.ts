@@ -6,12 +6,18 @@ import { BookFilterComponent } from '../book-filter/book-filter.component';
 import { BookService } from '../book.service';
 import { AsyncPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BookCardComponent, BookFilterPipe, BookFilterComponent, AsyncPipe],
+  imports: [
+    BookCardComponent,
+    BookFilterPipe,
+    BookFilterComponent,
+    AsyncPipe,
+    RouterLink,
+  ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })

@@ -1,3 +1,4 @@
+<a routerLink="new">New</a> <br />
 <app-book-filter [(filter)]="searchTerm" />{{ all() }}
 <hr />
 @let filteredList = books() | bookFilter: searchTerm;

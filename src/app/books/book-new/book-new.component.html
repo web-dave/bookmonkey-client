@@ -1,0 +1,16 @@
+<h3>Create new Book</h3>
+
+<form [formGroup]="newBookForm" (ngSubmit)="save()">
+  <label for="title">title: </label>
+  <input name="title" id="title" type="text" formControlName="title" /><br />
+  <label for="isbn">isbn: </label>
+  <input name="isbn" id="isbn" type="text" formControlName="isbn" /><br />
+
+  <button type="submit">Senden</button>
+</form>
+<button (click)="reset()">reset</button><br />
+<button (click)="disable()">disable</button>
+
+<pre>{{ newBookForm.value | json }}</pre>
+<hr />
+<pre>{{ newBookForm.getRawValue() | json }}</pre>
