@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { BookService } from '../book.service';
 import { IBook } from '../models/book.interface';
+import { asyncIsbnValidator } from './isbn.validator';
 
 @Component({
   selector: 'app-book-new',
@@ -22,7 +23,11 @@ export class BookNewComponent {
   newBookForm = this.builder.group({
     title: ['Das Buch', [Validators.required], []],
     subtitle: ['', [], []],
-    isbn: ['', [Validators.required], []],
+    isbn: [
+      '',
+      [Validators.required, Validators.minLength(13)],
+      [asyncIsbnValidator()],
+    ],
     abstract: ['', [Validators.minLength(16)], []],
     numPages: [0, [], []],
     author: ['', [], []],
