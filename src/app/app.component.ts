@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BookCardComponent } from './book-card/book-card.component';
+import { IBook } from './book.interface';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { BookCardComponent } from './book-card/book-card.component';
 })
 export class AppComponent {
   title = 'GFI Workshop!';
-  book = {
+  book: IBook = {
     title: 'How to win friends',
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
