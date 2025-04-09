@@ -6,10 +6,13 @@ import { IBook } from './book.interface';
 })
 export class BookFilterPipe implements PipeTransform {
   transform(
-    books: IBook[] = [],
+    books: IBook[] | null = [],
     searchTerm = '',
     key: 'title' | 'author' | 'abstract' = 'title',
   ): IBook[] {
+    if (!books) {
+      books = [];
+    }
     console.log('pipe', searchTerm);
     return books.filter((book) => {
       return (

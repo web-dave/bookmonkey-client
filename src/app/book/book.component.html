@@ -34,6 +34,6 @@
 <!-- @for (book of transform(books, searchTerm); track book.title) {
   <app-book-card [content]="book" (selected)="goTo($event)" />
 } -->
-@for (book of books | bookFilter: searchTerm : key; track book.title) {
+@for (book of books$ | async | bookFilter: searchTerm : key; track book.title) {
   <app-book-card [content]="book" (selected)="goTo($event)" />
 }
