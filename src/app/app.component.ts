@@ -15,4 +15,8 @@ export class AppComponent {
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+
+  goTo(event: IBook) {
+    console.table(event);
+  }
 }
