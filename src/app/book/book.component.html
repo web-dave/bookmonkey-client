@@ -1,0 +1,39 @@
+<input
+  type="text"
+  #searchTermInput
+  name="searchTerm"
+  id="searchTerm"
+  (input)="searchTerm = searchTermInput.value"
+/>
+
+{{ key }}
+
+<input
+  type="radio"
+  checked="true"
+  name="key"
+  id="Title"
+  value="title"
+  (input)="key = 'title'"
+/>
+<input
+  type="radio"
+  name="key"
+  id="Abstract"
+  value="abstract"
+  (input)="key = 'abstract'"
+/>
+<input
+  type="radio"
+  name="key"
+  id="Author"
+  value="author"
+  (input)="key = 'author'"
+/>
+
+<!-- @for (book of transform(books, searchTerm); track book.title) {
+  <app-book-card [content]="book" (selected)="goTo($event)" />
+} -->
+@for (book of books | bookFilter: searchTerm : key; track book.title) {
+  <app-book-card [content]="book" (selected)="goTo($event)" />
+}
