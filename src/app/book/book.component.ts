@@ -6,6 +6,7 @@ import { BookService } from './book.service';
 import { AsyncPipe } from '@angular/common';
 import { catchError, filter, of, share, shareReplay, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -16,8 +17,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class BookComponent {
   searchTerm = '';
   key: 'title' | 'author' | 'abstract' = 'title';
-  // books: IBook[] = [];
-  service = inject(BookService); //.getBooks();
+  service = inject(BookService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
   req$ = this.service.getBooks().pipe(share());
   books$ = this.req$.pipe(
     catchError((err) => of(null)),
@@ -36,13 +38,16 @@ export class BookComponent {
 
   goTo(event: IBook) {
     console.table(event);
+    this.router.navigate([event.isbn], {
+      relativeTo: this.route,
+    });
   }
 
-  show = false;
-
-  booksR$ = this.books$.pipe(shareReplay());
+  // show = false;
+  // booksR$ = this.books$.pipe(shareReplay());
   constructor() {
-    setTimeout(() => (this.show = true), 3000);
-    //   this.service.getBooks().subscribe({ next: (data) => (this.books = data) });
+    setInterval(() => this.goTo({ isbn: 7 } as any as IBook), 300);
+    //   setTimeout(() => (this.show = true), 3000);
+    //   //   this.service.getBooks().subscribe({ next: (data) => (this.books = data) });
   }
 }

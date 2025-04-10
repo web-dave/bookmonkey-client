@@ -14,4 +14,8 @@ export class BookService {
   getBooks(): Observable<IBook[]> {
     return this.http.get<IBook[]>(this.baseUrl);
   }
+
+  getBook(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>(this.baseUrl + '/' + isbn);
+  }
 }
