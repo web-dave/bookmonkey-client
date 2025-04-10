@@ -43,16 +43,16 @@
 } -->
 
 <!-- bedingt gut -->
-<!-- @if (books$ | async; as books) {
-  @for (book of books | bookFilter: searchTerm : key; track book.isbn) {
-    @if ($first) {
-      <h4>Anzahl: {{ $count }}/{{ books.length }}</h4>
-    }
-    <app-book-card [content]="book" (selected)="goTo($event)" />
+@for (book of books() | bookFilter: searchTerm : key; track book.isbn) {
+  @if ($first) {
+    <h4>Anzahl: {{ $count }}/{{ count() }}</h4>
   }
-} -->
+  <app-book-card [content]="book" (selected)="goTo($event)" />
+}
 
-<table>
+{{ error$ | async }}
+
+<!-- <table>
   @for (
     book of booksR$ | async | bookFilter: searchTerm : key;
     track book.isbn
@@ -67,4 +67,4 @@
 
 @if (show) {
   {{ (booksR$ | async)?.length }}
-}
+} -->
