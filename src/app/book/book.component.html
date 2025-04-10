@@ -6,7 +6,7 @@
   (input)="searchTerm = searchTermInput.value"
 />
 
-{{ key }}
+<!-- {{ key }}
 
 <input
   type="radio"
@@ -29,11 +29,42 @@
   id="Author"
   value="author"
   (input)="key = 'author'"
-/>
+/> -->
 
 <!-- @for (book of transform(books, searchTerm); track book.title) {
   <app-book-card [content]="book" (selected)="goTo($event)" />
 } -->
-@for (book of books$ | async | bookFilter: searchTerm : key; track book.title) {
+<!-- schlecht -->
+<!-- @for (book of books$ | async | bookFilter: searchTerm : key; track book.isbn) {
+  @if ($first) {
+    <h4>Anzahl: {{ $count }}/{{ (books$ | async)?.length }}</h4>
+  }
   <app-book-card [content]="book" (selected)="goTo($event)" />
+} -->
+
+<!-- bedingt gut -->
+<!-- @if (books$ | async; as books) {
+  @for (book of books | bookFilter: searchTerm : key; track book.isbn) {
+    @if ($first) {
+      <h4>Anzahl: {{ $count }}/{{ books.length }}</h4>
+    }
+    <app-book-card [content]="book" (selected)="goTo($event)" />
+  }
+} -->
+
+<table>
+  @for (
+    book of booksR$ | async | bookFilter: searchTerm : key;
+    track book.isbn
+  ) {
+    <tr>
+      <td>{{ $index }}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  }
+</table>
+
+@if (show) {
+  {{ (booksR$ | async)?.length }}
 }

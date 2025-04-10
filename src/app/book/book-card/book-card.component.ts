@@ -1,10 +1,9 @@
 import { Component, input, output } from '@angular/core';
 import { IBook } from '../book.interface';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss',
 })
