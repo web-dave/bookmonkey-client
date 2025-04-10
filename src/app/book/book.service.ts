@@ -35,6 +35,8 @@ export class BookService {
     });
   }
 }
+
+// Ein Observable
 const obs = {
   subscriber: null,
   subscribe: function (subscriber: {
