@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BookCard } from './book-card/book-card';
+import { IBook } from './models/book';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { BookCard } from './book-card/book-card';
   styleUrl: './app.scss',
 })
 export class App {
-  book = {
+  book: IBook = {
     title: 'Moby Dick',
     author: 'Hermans Melville',
     abstract: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...',
