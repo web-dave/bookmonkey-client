@@ -15,4 +15,8 @@ export class App {
     author: 'Hermans Melville',
     abstract: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...',
   };
+
+  navigate(book: IBook) {
+    console.log(book);
+  }
 }

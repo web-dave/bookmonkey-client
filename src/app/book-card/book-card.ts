@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { IBook } from '../models/book';
 
 @Component({
@@ -9,12 +9,13 @@ import { IBook } from '../models/book';
 })
 export class BookCard {
   content = input.required<IBook>();
+  detailClick = output<IBook>();
   customStyles = {
     color: 'lime',
   };
 
   handleDetailsClick(click: MouseEvent) {
     click.preventDefault();
-    console.log(click);
+    this.detailClick.emit(this.content());
   }
 }
