@@ -9,5 +9,9 @@ import { BookCard } from './book-card/book-card';
   styleUrl: './app.scss',
 })
 export class App {
-  protected title = 'monkey-client V20';
+  book = {
+    title: 'Moby Dick',
+    author: 'Hermans Melville',
+    abstract: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...',
+  };
 }

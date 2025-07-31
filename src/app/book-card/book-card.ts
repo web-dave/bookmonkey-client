@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-book-card',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './book-card.scss',
 })
 export class BookCard {
+  content = input.required<any>();
   customStyles = {
     color: 'lime',
   };
