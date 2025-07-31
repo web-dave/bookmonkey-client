@@ -1,4 +1,4 @@
 <h3>{{content().title}}</h3>
 <h4 [style]="customStyles">{{content().author}}</h4>
-<a href="#">Details</a>
+<button (click)="handleDetailsClick($event)">Details</button>
 <p>{{content().abstract}}</p>

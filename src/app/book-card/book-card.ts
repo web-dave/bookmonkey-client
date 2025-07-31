@@ -12,4 +12,9 @@ export class BookCard {
   customStyles = {
     color: 'lime',
   };
+
+  handleDetailsClick(click: MouseEvent) {
+    click.preventDefault();
+    console.log(click);
+  }
 }
