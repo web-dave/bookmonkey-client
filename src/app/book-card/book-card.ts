@@ -4,8 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-book-card',
   imports: [],
   templateUrl: './book-card.html',
-  styleUrl: './book-card.scss'
+  styleUrl: './book-card.scss',
 })
 export class BookCard {
-
+  customStyles = {
+    color: 'lime',
+  };
 }
