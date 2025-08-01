@@ -1,4 +1,6 @@
-@for (book of books; track book.title) {
+@for (book of books; track book.title) { @if($first){ My books
+<hr />
+}
 <app-book-card [content]="book" (detailClick)="navigate($event)" />
 }
 
