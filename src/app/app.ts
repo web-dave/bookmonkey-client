@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BookCard } from './book-card/book-card';
 import { IBook } from './models/book';
+import { BookFilter } from './book-filter-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BookCard],
+  imports: [RouterOutlet, BookCard, BookFilter],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -33,10 +34,14 @@ export class App {
     },
   ];
 
+  searchTerm = '';
+
   navigate(book: IBook) {
     console.log(book);
   }
-}
 
-// architektur einer Angular App
-// Wie geht das (Bootstrap)
+  setSearch(value: string) {
+    // const value = (event.target as HTMLInputElement).value;
+    this.searchTerm = value;
+  }
+}
