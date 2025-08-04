@@ -6,6 +6,7 @@ import { IBook } from './models/book';
 })
 export class BookFilter implements PipeTransform {
   transform(books: IBook[], search: string = ''): IBook[] {
+    console.log(books);
     return books.filter((book) =>
       book.title.toLowerCase().includes(search.toLowerCase()),
     );

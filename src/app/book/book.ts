@@ -3,6 +3,7 @@ import { BookCard } from './book-card/book-card';
 import { BookFilter } from './book-filter-pipe';
 import { IBook } from './models/book';
 import { BookApi } from './book-api';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -16,9 +17,12 @@ export class Book {
 
   searchTerm = '';
   constructor() {
-    this.service.getAll().subscribe({
-      next: (list) => (this.books = list),
-    });
+    this.service
+      .getAll()
+      .pipe(tap((data) => console.log(data)))
+      .subscribe({
+        next: (list) => (this.books = list),
+      });
   }
 
   navigate(book: IBook) {
