@@ -1,6 +1,28 @@
 <ng-content></ng-content>
-
+<button (click)="show = !show">Show</button>
+@if(show){
 <input type="text" #searchInput (input)="setSearch(searchInput.value)" />
-@for (book of books | bookFilter: searchTerm; track book.isbn) {
+<h3>{{(books$ | async)?.length }}</h3>
+@for (book of books$ | async | bookFilter: searchTerm; track book.isbn) {
 <app-book-card [content]="book" (detailClick)="navigate($event)" />
-}
+} }
+<!-- 
+share()
+Book$
+----x-[]-x-[]----------------------
+
+    x-[]-------------------
+-----x[]----------------------
+---------x-[]-----------------
+
+ -->
+<!-- 
+ shareReplay(1)
+Book$
+----x-[]-------------------------
+
+    x-[]-------------------
+-----x[]----------------------
+---------x-[]-----------------
+
+ -->

@@ -1,30 +1,39 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { BookCard } from './book-card/book-card';
 import { BookFilter } from './book-filter-pipe';
 import { IBook } from './models/book';
 import { BookApi } from './book-api';
-import { tap } from 'rxjs';
+import { Subscription, tap, share } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book',
-  imports: [BookCard, BookFilter],
+  imports: [BookCard, BookFilter, AsyncPipe],
   templateUrl: './book.html',
   styleUrl: './book.scss',
 })
-export class Book implements OnInit {
+export class Book implements OnInit, OnDestroy {
   service = inject(BookApi);
+  show = true;
   books: IBook[] = [];
   searchTerm = '';
-  book$ = this.service.getAll().pipe(
+  books$ = this.service.getAll().pipe(
     tap((data) => console.log(data)),
     takeUntilDestroyed(),
+    share(),
   );
 
+  sub?: Subscription;
+
   ngOnInit() {
-    this.book$.subscribe({
-      next: (list) => (this.books = list),
-    });
+    // this.sub = this.books$.subscribe({
+    //   next: (list) => (this.books = list),
+    // });
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
   navigate(book: IBook) {
