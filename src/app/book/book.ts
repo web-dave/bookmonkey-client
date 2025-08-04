@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BookCard } from './book-card/book-card';
 import { BookFilter } from './book-filter-pipe';
 import { IBook } from './models/book';
 import { BookApi } from './book-api';
 import { tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book',
@@ -11,18 +12,19 @@ import { tap } from 'rxjs';
   templateUrl: './book.html',
   styleUrl: './book.scss',
 })
-export class Book {
+export class Book implements OnInit {
   service = inject(BookApi);
   books: IBook[] = [];
-
   searchTerm = '';
-  constructor() {
-    this.service
-      .getAll()
-      .pipe(tap((data) => console.log(data)))
-      .subscribe({
-        next: (list) => (this.books = list),
-      });
+  book$ = this.service.getAll().pipe(
+    tap((data) => console.log(data)),
+    takeUntilDestroyed(),
+  );
+
+  ngOnInit() {
+    this.book$.subscribe({
+      next: (list) => (this.books = list),
+    });
   }
 
   navigate(book: IBook) {

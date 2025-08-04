@@ -14,6 +14,12 @@ export class BookCard {
     color: 'lime',
   };
 
+  // constructor() {
+  //   setInterval(() => {
+  //     console.log(this.content().title);
+  //   }, 2000);
+  // }
+
   handleDetailsClick(click: MouseEvent) {
     click.preventDefault();
     this.detailClick.emit(this.content());
