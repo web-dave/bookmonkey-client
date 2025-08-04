@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IBook } from './models/book';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class BookApi {
       abstract: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit...',
     },
     {
-      title: 'How to win friends',
+      title: 'How to win friendz',
       author: 'Dale Carnegie',
       abstract: 'How to Win Friends and Influence ...',
     },
@@ -28,7 +29,7 @@ export class BookApi {
     },
   ];
 
-  getAll() {
-    return this.books;
+  getAll(): Observable<IBook[]> {
+    return of(this.books);
   }
 }

@@ -12,9 +12,14 @@ import { BookApi } from './book-api';
 })
 export class Book {
   service = inject(BookApi);
-  books: IBook[] = this.service.getAll();
+  books: IBook[] = [];
 
   searchTerm = '';
+  constructor() {
+    this.service.getAll().subscribe({
+      next: (list) => (this.books = list),
+    });
+  }
 
   navigate(book: IBook) {
     console.log(book);
@@ -25,3 +30,16 @@ export class Book {
     this.searchTerm = value;
   }
 }
+
+// const myObs = {
+//   subscriber: null,
+//   subscribe: function (subscriber: any) {
+//     this.subscriber = subscriber;
+//     setTimeout(() => {
+//       this.next('Moin');
+//     }, 2000);
+//   },
+//   next: function (data:any) {
+//     this.subscriber?.next(data);
+//   },
+// };
