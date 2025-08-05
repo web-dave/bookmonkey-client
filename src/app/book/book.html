@@ -2,10 +2,22 @@
 <button (click)="show = !show">Show</button>
 @if(show){
 <input type="text" #searchInput (input)="setSearch(searchInput.value)" />
-<h3>{{(books$ | async)?.length }}</h3>
+@for (book of books() | bookFilter: searchTerm; track book.isbn) {
+<!--  -->
+@if($first){
+<h3>{{$count}}/{{bookCount() }}</h3>
+
+}
+<!--  -->
+<app-book-card [content]="book" (detailClick)="navigate($event)" />
+}
+<!--  -->
+
 @for (book of books$ | async | bookFilter: searchTerm; track book.isbn) {
 <app-book-card [content]="book" (detailClick)="navigate($event)" />
-} }
+}
+<!--  -->
+}
 <!-- 
 share()
 Book$

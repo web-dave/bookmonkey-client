@@ -5,7 +5,7 @@ import { IBook } from './models/book';
   name: 'bookFilter',
 })
 export class BookFilter implements PipeTransform {
-  transform(books: IBook[] | null, search: string = ''): IBook[] {
+  transform(books: IBook[] | null = [], search: string = ''): IBook[] {
     if (!books) {
       books = [];
     }

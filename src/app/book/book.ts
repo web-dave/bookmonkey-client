@@ -1,10 +1,10 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
 import { BookCard } from './book-card/book-card';
 import { BookFilter } from './book-filter-pipe';
 import { IBook } from './models/book';
 import { BookApi } from './book-api';
 import { Subscription, tap, share } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -15,11 +15,16 @@ import { AsyncPipe } from '@angular/common';
 })
 export class Book implements OnInit, OnDestroy {
   service = inject(BookApi);
-  show = true;
-  books: IBook[] = [];
+  show = false;
   searchTerm = '';
+  books = toSignal(
+    this.service.getAll().pipe(tap((data) => console.log('toSignal', data))),
+    { initialValue: [] },
+  );
+
+  bookCount = computed(() => this.books().length);
   books$ = this.service.getAll().pipe(
-    tap((data) => console.log(data)),
+    tap((data) => console.log('Observable', data)),
     takeUntilDestroyed(),
     share(),
   );
