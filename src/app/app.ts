@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Book } from './book/book';
+import { Navigation } from './navigation/navigation';
 
 @Component({
   selector: 'app-root',
-  imports: [Book],
+  imports: [RouterOutlet, Navigation],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

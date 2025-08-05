@@ -9,7 +9,7 @@ export class BookFilter implements PipeTransform {
     if (!books) {
       books = [];
     }
-    console.log(books);
+    // console.log(books);
     return books.filter((book) =>
       book.title.toLowerCase().includes(search.toLowerCase()),
     );
