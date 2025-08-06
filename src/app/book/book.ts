@@ -5,6 +5,7 @@ import { IBook } from './models/book';
 import { BookApi } from './book-api';
 import { tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class Book {
   service = inject(BookApi);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+
   searchTerm = '';
 
   books = toSignal(this.service.getAll(), { initialValue: [] });
@@ -21,7 +25,7 @@ export class Book {
   bookCount = computed(() => this.books().length);
 
   navigate(book: IBook) {
-    console.log(book);
+    this.router.navigate(['details', book.isbn], { relativeTo: this.route });
   }
 
   setSearch(value: string) {

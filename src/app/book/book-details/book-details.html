@@ -1,0 +1,9 @@
+@if(book();as book){
+<h2>{{book.title}}</h2>
+<h3>{{book.author}}</h3>
+<p>{{book.abstract}}</p>
+<h4>{{book.isbn}}</h4>
+<h5>{{book.price }}</h5>
+<!-- | currency: "EUR" -->
+<img [src]="book.cover" [alt]="book.title" />
+}

@@ -12,6 +12,10 @@ export class BookApi {
   url = 'http://localhost:4730/books';
 
   getAll(): Observable<IBook[]> {
-    return this.http.get<IBook[]>(this.url); //.pipe(shareReplay(1));
+    return this.http.get<IBook[]>(this.url);
+  }
+
+  getOne(isbn: string): Observable<IBook> {
+    return this.http.get<IBook>(`${this.url}/${isbn}`);
   }
 }
