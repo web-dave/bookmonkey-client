@@ -1,0 +1,15 @@
+<p>book-new works!</p>
+<form [formGroup]="newBookForm" (ngSubmit)="submit()">
+  <label for="isbn">ISBN</label>
+  <input type="text" formControlName="isbn" id="isbn" />
+  <label for="title">Title</label>
+  <input type="text" formControlName="title" id="title" />
+  <label for="abstract">Abstract</label>
+  <input type="text" formControlName="abstract" id="abstract" />
+  <label for="author">Author</label>
+  <input type="text" formControlName="author" id="author" />
+
+  <button type="submit">Send</button>
+</form>
+
+<pre>{{newBookForm.value|json}}</pre>

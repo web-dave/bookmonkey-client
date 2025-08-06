@@ -1,5 +1,4 @@
-<!-- <button (click)="show = !show">Show</button>
-@if(show){ -->
+<a routerLink="new">🆕</a> <br />
 <input type="text" #searchInput (input)="setSearch(searchInput.value)" />
 @for (book of books() | bookFilter: searchTerm; track book.isbn) {
 <!--  -->
@@ -11,29 +10,3 @@
 <app-book-card [content]="book" (detailClick)="navigate($event)" />
 }
 <!--  -->
-
-<!-- @for (book of books$ | async | bookFilter: searchTerm; track book.isbn) {
-<app-book-card [content]="book" (detailClick)="navigate($event)" />
-} -->
-<!--  -->
-<!-- } -->
-<!-- 
-share()
-Book$
-----x-[]-x-[]----------------------
-
-    x-[]-------------------
------x[]----------------------
----------x-[]-----------------
-
- -->
-<!-- 
- shareReplay(1)
-Book$
-----x-[]-------------------------
-
-    x-[]-------------------
------x[]----------------------
----------x-[]-----------------
-
- -->

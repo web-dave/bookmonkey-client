@@ -5,11 +5,11 @@ import { IBook } from './models/book';
 import { BookApi } from './book-api';
 import { tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
-  imports: [BookCard, BookFilter],
+  imports: [BookCard, BookFilter, RouterLink],
   templateUrl: './book.html',
   styleUrl: './book.scss',
 })
