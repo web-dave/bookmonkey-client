@@ -4,7 +4,11 @@ import {
   provideZoneChangeDetection,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter, withDebugTracing } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withDebugTracing,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -13,7 +17,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection(),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(),
   ],
 };

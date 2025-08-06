@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit, Signal } from '@angular/core';
 import { IBook } from '../models/book';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { BookApi } from '../book-api';
 import { map, switchMap } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-book-details',
@@ -13,16 +13,22 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './book-details.scss',
 })
 export class BookDetails implements OnInit {
-  route = inject(ActivatedRoute);
+  isbn = input.required<string>();
+  // route = inject(ActivatedRoute);
   service = inject(BookApi);
-  // book!: IBook;
+  book!: Signal<IBook | undefined>;
 
-  book = toSignal(
-    this.route.params.pipe(
-      map((params) => params['isbn']),
-      switchMap((isbn: string) => this.service.getOne(isbn)),
-    ),
-  );
+  // bookOR = rxResource({
+  //   request: this.isbn,
+  //   loader: ({request})=> this.service.getOne(request)
+  // })
+
+  // book = toSignal(
+  //   this.route.params.pipe(
+  //     map((params) => params['isbn']),
+  //     switchMap((isbn: string) => this.service.getOne(isbn)),
+  //   ),
+  // );
 
   constructor() {
     // this.route.paramMap.subscribe({
@@ -39,8 +45,6 @@ export class BookDetails implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.service.getOne(this.isbn).subscribe({
-    //   next: (data) => (this.book = data),
-    // });
+    this.book = toSignal(this.service.getOne(this.isbn()));
   }
 }
