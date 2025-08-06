@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Book } from './book';
 import { BookDetails } from './book-details/book-details';
+import { confirmLeaveGuard } from './confirm-leave-guard';
 
 const bookRoutes: Routes = [
   {
@@ -10,6 +11,7 @@ const bookRoutes: Routes = [
   {
     path: 'details/:isbn',
     component: BookDetails,
+    canDeactivate: [confirmLeaveGuard],
   },
 ];
 
