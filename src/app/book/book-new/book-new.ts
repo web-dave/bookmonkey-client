@@ -1,6 +1,10 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-book-new',
@@ -9,7 +13,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './book-new.scss',
 })
 export class BookNew {
-  formBuilder = inject(FormBuilder);
+  formBuilder = inject(NonNullableFormBuilder);
   newBookForm = this.formBuilder.group({
     title: [''],
     author: [''],
@@ -19,6 +23,8 @@ export class BookNew {
   submit() {
     console.log(this.newBookForm);
 
-    // this.newBookForm.controls['title'].setValue('lksjadhfsla');
+    this.newBookForm.controls['title'].disable();
+    const foo = this.newBookForm.value;
+    console.log(foo);
   }
 }
